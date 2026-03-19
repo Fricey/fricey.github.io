@@ -1,0 +1,33 @@
+# Hugo Configuration File
+title = "hugoblox-test"
+baseURL = "https://example.com"
+languageCode = "en-us"
+
+# Theme Configuration
+[params]
+  # Site details
+  site_type = "portfolio"
+
+  # Theme settings
+  theme_mode = "system"
+
+  # Contact details
+  email = "contact@example.com"
+
+  # Social links
+  [[params.social]]
+    icon = "envelope"
+    icon_pack = "fas"
+    link = "mailto:contact@example.com"
+
+# Menu Configuration
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 10
+
+# Markup Configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

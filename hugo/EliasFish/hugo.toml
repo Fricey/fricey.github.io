@@ -1,0 +1,52 @@
+baseURL = "https://elias.fish/"
+title = "Elias Öström"
+theme = "hugo-profile"
+defaultContentLanguage = "en"
+languageCode = "en"
+
+enableRobotsTXT = true
+enableEmoji = true
+buildDrafts = false
+buildFuture = false
+summaryLength = 0
+
+[pagination]
+  pagerSize = 6
+
+[params.cover]
+  hiddenInList = false
+  hiddenInSingle = false
+
+[params]
+  env = "production"
+  description = "Your description here"
+  defaultTheme = "auto"        # auto, light, dark
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = false
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = false
+  ShowFullTextinRSS = false
+  mainSections = ["projects"]
+  ShowTags = true
+
+  [params.homeInfoParams]
+    Title = "Elias Öström"
+    Content = "Helt galet goatad"
+
+  [params.profileMode]
+    enabled = false             # set true if you want centered profile layout
+
+[menu]
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/tags/"
+    weight = 2
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]

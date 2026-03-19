@@ -1,0 +1,13 @@
+[submodule "themes/blowfish"]
+	path = themes/blowfish
+	url = https://github.com/nunocoracao/blowfish.git
+	branch = main
+[submodule "hugo/EliasFish/themes/PaperMod"]
+	path = hugo/EliasFish/themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod
+[submodule "hugo/EliasFish/themes/congo"]
+	path = hugo/EliasFish/themes/congo
+	url = https://github.com/jpanther/congo
+[submodule "hugo/EliasFish/themes/hugo-profile"]
+	path = hugo/EliasFish/themes/hugo-profile
+	url = https://github.com/gurusabarish/hugo-profile

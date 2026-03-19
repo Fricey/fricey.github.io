@@ -1,0 +1,13 @@
+{
+  "name": "hugoblox-test",
+  "private": true,
+  "scripts": {
+    "dev": "hugo server -D",
+    "build": "hugo --gc --minify",
+    "lint": "echo 'TODO: add lint script'"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "hugo-bin": "^0.114.0"
+  }
+}
