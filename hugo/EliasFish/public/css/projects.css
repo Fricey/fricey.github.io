@@ -22,6 +22,7 @@
     overflow: hidden;
     border-radius: 1rem;
     border: none !important;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 #projects .card:hover {
@@ -43,9 +44,9 @@
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
-
+/*image scale grejen*/
 #projects .card:hover .card-img-top {
-    transform: scale(1.2);
+    transform: scale(1.05);
     transition: all 0.3s ease-out;
 }
 

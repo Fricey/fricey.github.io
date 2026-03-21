@@ -1,0 +1,162 @@
+baseURL: "https://elias.fish"
+languageCode: "en-us"
+title: "Elias Öström"
+theme: hugo-profile
+
+defaultContentLanguage: "en"
+
+outputs:
+  home:
+    - "HTML"
+    - "RSS"
+    - "JSON"
+  page:
+    - "HTML"
+    - "RSS"
+
+enableRobotsTXT: true
+
+pagination:
+  pagerSize: 6
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+Menus:
+  main:
+    - identifier: projects
+      name: Projects
+      title: Projects
+      url: /projects
+      weight: 1
+    - identifier: about
+      name: About
+      title: About
+      url: /#about
+      weight: 2
+
+params:
+  customScripts: |
+    <script src="/js/bubbles.js"></script>
+
+  title: "Elias Öström"
+  description: "Game developer portfolio"
+  favicon: "/fav.png"
+
+  useBootstrapCDN: false
+  animate: true
+  mathjax: false
+
+  theme:
+    defaultTheme: "dark"
+
+  font:
+    fontSize: 1rem
+    fontWeight: 400
+    lineHeight: 1.5
+    textAlign: left
+
+  color:
+    textColor: "#e4e6eb"
+    secondaryTextColor: "#b0b3b8"
+    textLinkColor: "#38bdf8"
+    backgroundColor: "#0f172a"
+    secondaryBackgroundColor: "#1e293b"
+    primaryColor: "#38bdf8"
+    secondaryColor: "#1e293b"
+
+  darkmode:
+    textColor: "#e4e6eb"
+    secondaryTextColor: "#b0b3b8"
+    textLinkColor: "#38bdf8"
+    backgroundColor: "#0a1628"
+    secondaryBackgroundColor: "#1e293b"
+    primaryColor: "#38bdf8"
+    secondaryColor: "#1e293b"
+
+  navbar:
+    align: ms-auto
+    brandName: "elias.fish"
+    disableSearch: true
+    stickyNavBar:
+      enable: true
+      showOnScrollUp: true
+    enableSeparator: false
+    menus:
+      disableAbout: false
+      disableExperience: true
+      disableEducation: true
+      disableProjects: false
+      disableAchievements: true
+      disableContact: true
+
+  hero:
+    enable: true
+    intro: ""
+    title: "Elias Öström"
+    subtitle: "hej"
+    content: "jag galet bra på allt"
+    image: /images/hero.svg
+    bottomImage:
+      enable: true
+    button:
+      enable: false
+    socialLinks:
+      fontAwesomeIcons: []
+
+  about:
+    enable: false
+    title: "About Me"
+    image: "/images/me.png"
+    content: |-
+      I'm a game developer student based in Sweden. I enjoy building games and interactive experiences, and I'm always looking for new challenges.
+    skills:
+      enable: false
+
+  experience:
+    enable: false
+
+  education:
+    enable: false
+
+  achievements:
+    enable: false
+
+  projects:
+    enable: true
+    title: "Projects"
+    items:
+      - title: I Am Ambulance
+        content: A 3D game developed at The Game Assembly in Malmö.
+        image: /images/projects/P1.jpg
+        badges:
+          - "Unity"
+          - "C#"
+          - "3D"
+
+  contact:
+    enable: false
+
+  footer:
+    recentPosts:
+      enable: false
+    socialNetworks: {}
+
+  listPages:
+    disableFeaturedImage: false
+
+  singlePages:
+    socialShare: false
+    readTime:
+      enable: true
+      content: "min read"
+    scrollprogress:
+      enable: true
+      
+
+  datesFormat:
+    article: "Jan 2, 2006"
+    articleList: "Jan 2, 2006"
+    articleRecent: "Jan 2, 2006"

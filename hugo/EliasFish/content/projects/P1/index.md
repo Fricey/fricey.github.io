@@ -1,7 +1,10 @@
 +++
 title = 'P1'
 date = '2026-02-14T20:53:59+01:00'
-tags = ["Unity", "C#", "3D"]
+badges = ["Unity", "C#", "3D"]
+image = "/projects/P1/P1-thumb.jpg"
+summary  = "hej"
+toc = false
 +++
 {{< youtube Vm3-EIXBkxM >}}
 # Bajskorv!

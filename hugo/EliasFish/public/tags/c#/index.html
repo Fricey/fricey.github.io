@@ -31,14 +31,14 @@
 <meta property="og:url" content="http://localhost:1313/tags/c%23/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="C#">
-  <meta property="og:description" content="Your description here">
-  <meta property="og:locale" content="en">
+  <meta property="og:description" content="Game developer portfolio">
+  <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="C#">
-  <meta name="twitter:description" content="Your description here">
+  <meta name="twitter:description" content="Game developer portfolio">
 
 
 
@@ -53,13 +53,13 @@
 
 <style>
     :root {
-        --text-color: #343a40;
-        --text-secondary-color: #6c757d;
-        --text-link-color: #007bff;
-        --background-color: #eaedf0;
-        --secondary-background-color: #64ffda1a;
-        --primary-color: #007bff;
-        --secondary-color: #f8f9fa;
+        --text-color: #e4e6eb;
+        --text-secondary-color: #b0b3b8;
+        --text-link-color: #38bdf8;
+        --background-color: #0f172a;
+        --secondary-background-color: #1e293b;
+        --primary-color: #38bdf8;
+        --secondary-color: #1e293b;
 
          
         --text-color-dark: #e4e6eb;
@@ -147,22 +147,43 @@ C# | Elias Öström
 
 
 
+<script>
+    var prevScrollPos = window.pageYOffset;
+    window.addEventListener("scroll", function showHeaderOnScroll() {
+        let profileHeaderElem = document.getElementById("profileHeader");
+        let currentScrollPos = window.pageYOffset;
+        let resetHeaderStyle = false;
+        let showNavBarOnScrollUp =  true ;
+        let showNavBar = showNavBarOnScrollUp ? prevScrollPos > currentScrollPos : currentScrollPos > 0;
+        if (showNavBar) {
+            profileHeaderElem.classList.add("showHeaderOnTop");
+        } else {
+            resetHeaderStyle = true;
+        }
+        if(currentScrollPos === 0) {
+            resetHeaderStyle = true;
+        }
+        if(resetHeaderStyle) {
+            profileHeaderElem.classList.remove("showHeaderOnTop");
+        }
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+
+
 
 <header id="profileHeader">
-    <nav class="pt-3 navbar navbar-expand-lg ">
+    <nav class="pt-3 navbar navbar-expand-lg animate">
         <div class="container-fluid mx-xs-2 mx-sm-5 mx-md-5 mx-lg-5">
             
             <a class="navbar-brand primary-font text-wrap" href="/">
                 
-                
+                <img src="/fav.png" width="30" height="30"
+                    class="d-inline-block align-top">
+                elias.fish
                 
             </a>
 
-            
-                <div>
-                    <input id="search" autocomplete="off" class="form-control mr-sm-2 d-none d-md-block" placeholder='Search...'
-                        aria-label="Search" oninput="searchOnChange(event)">
-                </div>
             
 
             
@@ -177,11 +198,13 @@ C# | Elias Öström
             <div class="collapse navbar-collapse text-wrap primary-font" id="navbarContent">
                 <ul class="navbar-nav ms-auto text-center">
                     
-                        <li class="nav-item navbar-text d-block d-md-none">
-                            <div class="nav-link">
-                                <input id="search" autocomplete="off" class="form-control mr-sm-2" placeholder='Search...' aria-label="Search" oninput="searchOnChange(event)">
-                            </div>
-                        </li>
+
+                    
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#about" aria-label="about">
+                            About Me
+                        </a>
+                    </li>
                     
 
                     
@@ -189,7 +212,12 @@ C# | Elias Öström
                     
 
                     
-
+                    <li class="nav-item navbar-text">
+                        <a class="nav-link" href="/#projects"
+                            aria-label="projects">
+                            Projects
+                        </a>
+                    </li>
                     
 
                     
@@ -203,7 +231,7 @@ C# | Elias Öström
                     
                     
                     <li class="nav-item navbar-text">
-                        <a class="nav-link" href="/projects/" title="">
+                        <a class="nav-link" href="/#projects" title="Projects">
                             
                             Projects
                         </a>
@@ -213,7 +241,7 @@ C# | Elias Öström
                     
                     
                     <li class="nav-item navbar-text">
-                        <a class="nav-link" href="/tags/" title="">
+                        <a class="nav-link" href="/#about" title="About">
                             
                             About
                         </a>
@@ -255,24 +283,6 @@ C# | Elias Öström
     <h2 class="text-center pb-2">C#</h2>
     <div class="row">
         
-        <div class="col-lg-4 col-md-6 my-3">
-            <div class="card h-100">
-                
-                <div class="card-body bg-transparent p-4 shadow-sm">
-                    <a href="/projects/p1/" class="primary-font card-title">
-                        <h5 class="card-title bg-transparent" title="P1">P1</h5>
-                    </a>
-                    <div class="card-text secondary-font">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="mt-auto post-footer bg-transparent py-3">
-                    <span class="float-start bg-transparent">February 14, 2026</span>
-                    <a href="/projects/p1/" class="float-end btn btn-outline-info btn-sm">Read</a>
-                </div>
-            </div>
-        </div>
-        
         <div class="row justify-content-center">
             <div class="col-auto m-3">
                 
@@ -301,6 +311,13 @@ C# | Elias Öström
     <div class="row justify-content-center">
         <div class="col-md-4 text-center">
             
+                <div class="pb-2">
+                    <a href="http://localhost:1313/" title="Elias Öström">
+                        <img alt="Footer logo" src="/fav.png"
+                            height="40px" width="40px">
+                    </a>
+                </div>
+            
             &copy; 2026  All Rights Reserved
             <div class="text-secondary">
                 Made with
@@ -318,17 +335,11 @@ C# | Elias Öström
 </div>
 </footer><script src="/bootstrap-5/js/bootstrap.bundle.min.js"></script>
 <script>
-    if (localStorage.getItem("pref-theme") === "dark") {
+    if (document.body.className.includes("light")) {
         document.documentElement.classList.add('dark');
         document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-        document.documentElement.classList.remove('dark');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-        document.body.classList.add('dark');
+        localStorage.setItem("pref-theme", 'dark');
     }
-
 </script>
 <script>
     document.getElementById("theme-toggle").addEventListener("click", () => {
@@ -350,12 +361,6 @@ C# | Elias Öström
 
 </script>
 
-
-    <script>
-      
-      window.searchIndexURL = "/index.json";
-    </script>
-    <script src="/js/search.js"></script>
 
 
 
