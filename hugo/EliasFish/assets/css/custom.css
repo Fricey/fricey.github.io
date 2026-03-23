@@ -1,22 +1,7 @@
-main {
-  margin: 0 auto !important;
-  max-width: 1400px !important;
-  width: 100% !important;
-  padding: 2rem !important;
-}
-
-.max-w-prose {
-  max-width: 100% !important;
-}
-
-article {
-  max-width: 100% !important;
-  width: 100% !important;
-}
-
 .card-hoverable {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  overflow: hidden;
 }
 
 .card-hoverable:hover {
@@ -28,20 +13,6 @@ article {
   color: inherit;
 }
 
-#projects .card:hover .card-img-top {
-  transform: none !important;
-  transition: none !important;
-}
-
-body {
-  background-color: transparent !important;
-}
-
-body > *:not(canvas) {
-  position: relative;
-  z-index: 1;
-}
-
-#profileHeader {
-  z-index: 2 !important;
+.single .featured-image {
+  display: none;
 }

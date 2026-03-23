@@ -26,11 +26,6 @@ markup:
 
 Menus:
   main:
-    - identifier: projects
-      name: Projects
-      title: Projects
-      url: /projects
-      weight: 1
     - identifier: about
       name: About
       title: About
@@ -39,6 +34,7 @@ Menus:
 
 params:
   customScripts: |
+    <link rel="stylesheet" href="/css/bubbles.css">
     <script src="/js/bubbles.js"></script>
 
   title: "Elias Öström"
@@ -126,15 +122,15 @@ params:
 
   projects:
     enable: true
-    title: "Projects"
-    items:
-      - title: I Am Ambulance
-        content: A 3D game developed at The Game Assembly in Malmö.
-        image: /images/projects/P1.jpg
-        badges:
-          - "Unity"
-          - "C#"
-          - "3D"
+    # title: "Projects"
+    # items:
+    #   - title: I Am Ambulance
+    #     content: A 3D game developed at The Game Assembly in Malmö.
+    #     image: /images/projects/P1.jpg
+    #     badges:
+    #       - "Unity"
+    #       - "C#"
+    #       - "3D"
 
   contact:
     enable: false
