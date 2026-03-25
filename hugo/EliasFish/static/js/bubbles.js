@@ -1,5 +1,7 @@
 const bubbleCount = 30;
 
+const container = document.getElementById('bubble-container');
+
 for (let i = 0; i < bubbleCount; i++) {
   const bubble = document.createElement('div');
   bubble.classList.add('bubble');
@@ -17,5 +19,5 @@ for (let i = 0; i < bubbleCount; i++) {
     animation-delay: -${delay}s;
   `;
 
-  document.documentElement.appendChild(bubble);
+  container.appendChild(bubble);
 }

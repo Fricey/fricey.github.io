@@ -94,7 +94,7 @@ params:
     title: "Elias Öström"
     subtitle: "hej"
     content: "jag galet bra på allt"
-    image: /images/hero.svg
+    image: /assets/images/ingenting.png
     bottomImage:
       enable: true
     button:

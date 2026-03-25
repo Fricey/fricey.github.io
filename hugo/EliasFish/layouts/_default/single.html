@@ -11,14 +11,14 @@
 {{ end }}
 
 {{ define "main" }}
-<section id="single">
+<section id="single" style="position:relative;z-index:1;">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-12 col-md-12 col-lg-12">
         <div class="pr-lg-4">
           <div class="title mb-5">
             <h1 class="text-center mb-4">{{ .Title }}</h1>
-            <div class="text-center">
+            <!-- <div class="text-center">
               {{ if .Params.author }}
                 {{ .Params.author }}
                 <small>|</small>
@@ -29,6 +29,15 @@
               <span id="readingTime">
                 {{ .Site.Params.singlePages.readTime.content | default (i18n "min_read") }}
               </span>
+              {{ end }}
+            </div> -->
+            <div class="text-center">
+              {{ if .Params.projectLength }}
+                <span>{{ .Params.projectLength }}</span>
+              {{ end }}
+              <br>
+              {{ range .Params.badges }}
+                <span class="badge badge-secondary">{{ . }}</span>
               {{ end }}
             </div>
           </div>

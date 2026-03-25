@@ -16,3 +16,12 @@
 .single .featured-image {
   display: none;
 }
+
+#single {
+  position: relative;
+  z-index: 1;
+}
+
+.progress {
+  z-index: 2 !important;
+}
