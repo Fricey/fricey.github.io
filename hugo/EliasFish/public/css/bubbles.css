@@ -18,9 +18,9 @@
 .bubble {
   position: fixed;
   border-radius: 50%;
-  border: 1.5px solid rgba(56, 189, 248, 0.6);
+  /* border: 1.5px solid rgba(56, 189, 248, 0.6); */
   background: rgba(56, 189, 248, 0.04);
   animation: rise linear infinite;
-  pointer-events: none;
+  pointer-events: auto;
   z-index: 0;
 }

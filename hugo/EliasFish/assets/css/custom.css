@@ -25,3 +25,12 @@
 .progress {
   z-index: 2 !important;
 }
+
+#profileHeader {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px);
+}
+
+#profileHeader nav {
+  background-color: transparent !important;
+}

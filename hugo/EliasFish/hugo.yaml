@@ -29,7 +29,7 @@ Menus:
     - identifier: about
       name: About
       title: About
-      url: /#about
+      url: /about
       weight: 2
 
 params:
@@ -74,7 +74,7 @@ params:
 
   navbar:
     align: ms-auto
-    brandName: "elias.fish"
+    brandName: " "
     disableSearch: true
     stickyNavBar:
       enable: true
