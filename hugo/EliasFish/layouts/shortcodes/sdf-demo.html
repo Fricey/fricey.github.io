@@ -1,0 +1,165 @@
+<div id="sdf-demo-wrap" style="width:100%;margin:1.5rem 0;">
+  <canvas id="sdf-canvas" style="display:block;width:100%;border-radius:4px;cursor:crosshair;"></canvas>
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('sdf-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  function getColors() {
+    const bodyStyle = getComputedStyle(document.body);
+    const codeEl    = document.querySelector('pre code, .highlight pre, pre, code');
+    const codeStyle = codeEl ? getComputedStyle(codeEl) : null;
+    return {
+      bg:      codeStyle ? codeStyle.backgroundColor : bodyStyle.backgroundColor,
+      primary: codeStyle ? codeStyle.color           : bodyStyle.color,
+      text:    bodyStyle.color,
+    };
+  }
+
+  function toRGB(cssColor) {
+    const tmp = document.createElement('canvas');
+    tmp.width = tmp.height = 1;
+    const c = tmp.getContext('2d');
+    c.fillStyle = cssColor;
+    c.fillRect(0, 0, 1, 1);
+    const d = c.getImageData(0, 0, 1, 1).data;
+    return `${d[0]},${d[1]},${d[2]}`;
+  }
+
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    canvas.width  = w;
+    canvas.height = Math.round(w * 0.62);
+  }
+
+  function getObstacles() {
+    const W = canvas.width, H = canvas.height;
+    return [
+      { x: W*0.22, y: H*0.22, r: W*0.09 },
+      { x: W*0.72, y: H*0.20, r: W*0.11 },
+      { x: W*0.58, y: H*0.72, r: W*0.13 },
+      { x: W*0.26, y: H*0.80, r: W*0.10 },
+      { x: W*0.83, y: H*0.60, r: W*0.09 },
+    ];
+  }
+
+  function sceneSDF(px, py, obs) {
+    let d = Infinity;
+    for (const o of obs) {
+      const dd = Math.hypot(px - o.x, py - o.y) - o.r;
+      if (dd < d) d = dd;
+    }
+    return d;
+  }
+
+  let mouseX = null, mouseY = null;
+
+  canvas.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouseX = (e.clientX - r.left) * (canvas.width  / r.width);
+    mouseY = (e.clientY - r.top)  * (canvas.height / r.height);
+    draw();
+  });
+  canvas.addEventListener('mouseleave', () => { mouseX = null; mouseY = null; draw(); });
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    const r = canvas.getBoundingClientRect();
+    mouseX = (e.touches[0].clientX - r.left) * (canvas.width  / r.width);
+    mouseY = (e.touches[0].clientY - r.top)  * (canvas.height / r.height);
+    draw();
+  }, { passive: false });
+
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    const colors = getColors();
+    const pRGB   = toRGB(colors.primary);
+    const bgRGB  = toRGB(colors.bg);
+
+    const ox = W * 0.06, oy = H * 0.50;
+    const tx = mouseX != null ? mouseX : W * 0.72;
+    const ty = mouseY != null ? mouseY : oy;
+    let dx = tx - ox, dy = ty - oy;
+    const len = Math.hypot(dx, dy);
+    if (len < 1) return;
+    dx /= len; dy /= len;
+
+    ctx.fillStyle = colors.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.strokeStyle = `rgba(${pRGB},0.07)`;
+    ctx.lineWidth = 1;
+    const step = W / 14;
+    for (let x = 0; x <= W; x += step) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for (let y = 0; y <= H; y += step) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+    const obs = getObstacles();
+    for (const o of obs) {
+      ctx.beginPath();
+      ctx.arc(o.x, o.y, o.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${bgRGB},0.6)`;
+      ctx.fill();
+      ctx.strokeStyle = `rgba(${pRGB},0.45)`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    const steps = [];
+    let t = 0, hit = false;
+    for (let i = 0; i < 64; i++) {
+      const px = ox + dx*t, py = oy + dy*t;
+      const d = sceneSDF(px, py, obs);
+      steps.push({ px, py, d });
+      if (d <= 2.5) { hit = true; break; }
+      if (px < 0 || px > W || py < 0 || py > H) { break; }
+      if (t + d > W*50.0) { t += d; break; }
+      t += d;
+    }
+
+    for (let i = steps.length-1; i >= 0; i--) {
+      const s = steps[i], a = 0.10 + 0.08*(i/steps.length);
+      ctx.beginPath(); ctx.arc(s.px, s.py, s.d, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(${pRGB},${a+0.12})`; ctx.lineWidth = 1.2; ctx.stroke();
+      ctx.fillStyle   = `rgba(${pRGB},${a*0.25})`; ctx.fill();
+    }
+
+    const last = steps[steps.length-1];
+    const endX = last.px, endY = last.py;
+    const rRGB = hit ? '255,90,80' : pRGB;
+
+    ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(endX,endY);
+    ctx.strokeStyle = `rgba(${pRGB},0.10)`; ctx.lineWidth = 7; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(endX,endY);
+    ctx.strokeStyle = `rgba(${rRGB},0.85)`; ctx.lineWidth = 1.5; ctx.setLineDash([]); ctx.stroke();
+
+    if (!hit) {
+      ctx.beginPath(); ctx.moveTo(endX,endY); ctx.lineTo(ox+dx*W*1.5, oy+dy*W*1.5);
+      ctx.strokeStyle = `rgba(${pRGB},0.15)`; ctx.setLineDash([4,6]); ctx.lineWidth=1; ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    for (let i = 0; i < steps.length; i++) {
+      const s = steps[i], isHit = i===steps.length-1 && hit;
+      ctx.beginPath(); ctx.arc(s.px, s.py, isHit?4:3, 0, Math.PI*2);
+      ctx.fillStyle = isHit ? 'rgba(255,90,80,0.95)' : `rgba(${pRGB},0.9)`; ctx.fill();
+    }
+
+    ctx.beginPath(); ctx.arc(ox,oy,5,0,Math.PI*2);
+    ctx.fillStyle = colors.text; ctx.fill();
+    ctx.beginPath(); ctx.arc(ox,oy,9,0,Math.PI*2);
+    ctx.strokeStyle = `rgba(${pRGB},0.3)`; ctx.lineWidth=1.5; ctx.stroke();
+
+    ctx.font = `${Math.round(W*0.018)}px monospace`;
+    ctx.fillStyle = `rgba(${pRGB},0.55)`;
+    ctx.fillText('origin', ox+12, oy-10);
+    ctx.fillStyle = hit ? 'rgba(255,100,80,0.8)' : `rgba(${pRGB},0.6)`;
+    ctx.fillText(`${steps.length} iterations · ${hit?'HIT':'miss'}`, W*0.04, H*0.96);
+  }
+
+  // Run immediately — the canvas is already in the DOM above this script tag
+  resize();
+  draw();
+  window.addEventListener('resize', () => { resize(); draw(); });
+})();
+</script>
