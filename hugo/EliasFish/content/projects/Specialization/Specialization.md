@@ -13,10 +13,10 @@ toc = false
 ![Cover Image](/projects/Specialization/Specialization-thumb.jpg)
 
 # Introduction
-For my specialization project at the game assembly I decided I wanted to explore something that had recently caught my interest. A [friend](https://www.codrea.nu) of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF). It's not a very popular form of rendering in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.
+For my specialization project at The Game Assembly I set out to create a real time SDF renderer. A [friend](https://www.codrea.nu) of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF), which caught my interest and made me want to try it out. It's uncommon in in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.
 
 # What is SDF?
-Signed distance functions are formulas that take a point as input and return its distance to the shape's surface with a negative value if the point is inside the shape. Below is an example of what a spheres SDF would look like in HLSL:
+A signed distance function is a mathematical function that takes a point as input and returns the distance to a shape's surface. The "signed" part means the distance is negative if the point is inside the shape and positive if it's outside. Below is an example of what a sphere's SDF would look like in HLSL:
 ```HLSL
 float SphereSDF(float3 aPoint, float aRadius)
 {
@@ -30,14 +30,18 @@ These distances are then used for rendering by using raymarching. Raymarching wo
 As an engine I decided to use my project from our old graphics course. I decided to do this mostly to minimize bloat as I knew most logic would happen in a shader and I would still need to make my own rendering pipeline. The first few days of the project was mostly spent ripping out old mesh based code and replacing the pipeline with just a fullscreen quad output from a vertex shader going into a pixel shader doing all the raymarching.
 
 # Performance
-I knew before even starting that performance would be a big issue since for every rays scene sample loads of complex math functions would be calculated each frame. One major optimization I implemented was to use a 3D texture as a brickmap to cache previously calculated values to be able to sample the brickmap instead of recalculating all SDFs. To be able to increase the render distance without consuming too much memory I used multiple brickmaps stacked on top of each other with increasing size but decreasing resolution acting as LOD for objects farther away.
+I knew before even starting that performance would be a big issue since for every ray's scene sample many complex math functions would be calculated each frame. One major optimization I implemented was to use a 3D texture as a brickmap to cache previously calculated values to be able to sample the brickmap instead of recalculating all SDFs. To be able to increase the render distance without consuming too much memory I used multiple brickmaps stacked on top of each other with increasing size but decreasing resolution acting as LOD for objects farther away.
 
-![brickmap.gif](/images/brickmap.gif)
+<div style="text-align: left;">
+  <video width="50%" autoplay muted loop>
+    <source src="/videos/brickmap.mp4" type="video/mp4">
+  </video>
+</div>
 
 ###### (Brickmap cells colored and size exaggerated for demonstration)
 
 # SDF operations
-One of the things that really interested me with SDF is the flexibility you can do with SDF operations due SDF being only mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn't really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.
+One of the things that really interested me with SDF is the flexibility you can do with SDF operations due to SDF being purely mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn't really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.
 
 #### Union
 A union is defined by the minimum distance of two shapes resulting in them combining into one. This is the most common operation as the entire scene could be viewed as one big union.
@@ -55,6 +59,7 @@ An intersection only shows the part where two shapes intersect. This is somethin
 ###### max(a,b)
 
 {{< sdf-operations >}}
+###### (Drag shapes to reposition)
 
 # Geometry Rebuilding
 One big advantage with SDF rendering is the low cost of geometry rebuilding you get in exchange for the cost of rendering. A popular effect is to use a smooth min instead of a normal min function when doing the different SDF operations. This is a very cheap effect that creates a sort of "blobby" look to the scene and was the first thing I decided to implement. Since the output of SDFs is just a single float that can be transformed however needed to achieve an effect. Below are some examples of simple effects you can apply to either individual objects or an entire scene.
@@ -64,7 +69,7 @@ One big advantage with SDF rendering is the low cost of geometry rebuilding you 
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/sdf-smoothing.mp4" type="video/mp4">
     </video>
-    <h6>Smooth Unions</h6>
+    <h6>Smoothing</h6>
   </div>
   <div style="text-align: center; width: 45%;">
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>

@@ -296,9 +296,9 @@ SDF Renderer | Elias Öström
           <article class="page-content  p-2">
           <p><img src="/projects/Specialization/Specialization-thumb.jpg" alt="Cover Image"></p>
 <h1 id="introduction">Introduction</h1>
-<p>For my specialization project at the game assembly I decided I wanted to explore something that had recently caught my interest. A <a href="https://www.codrea.nu">friend</a> of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF). It&rsquo;s not a very popular form of rendering in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.</p>
+<p>For my specialization project at The Game Assembly I set out to create a real time SDF renderer. A <a href="https://www.codrea.nu">friend</a> of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF), which caught my interest and made me want to try it out. It&rsquo;s uncommon in in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.</p>
 <h1 id="what-is-sdf">What is SDF?</h1>
-<p>Signed distance functions are formulas that take a point as input and return its distance to the shape&rsquo;s surface with a negative value if the point is inside the shape. Below is an example of what a spheres SDF would look like in HLSL:</p>
+<p>A signed distance function is a mathematical function that takes a point as input and returns the distance to a shape&rsquo;s surface. The &ldquo;signed&rdquo; part means the distance is negative if the point is inside the shape and positive if it&rsquo;s outside. Below is an example of what a sphere&rsquo;s SDF would look like in HLSL:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-HLSL" data-lang="HLSL"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> SphereSDF(<span style="color:#66d9ef">float3</span> aPoint, <span style="color:#66d9ef">float</span> aRadius)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> length(aPoint) <span style="color:#f92672">-</span> aRadius;
@@ -474,11 +474,15 @@ SDF Renderer | Elias Öström
 <h1 id="project-setup">Project Setup</h1>
 <p>As an engine I decided to use my project from our old graphics course. I decided to do this mostly to minimize bloat as I knew most logic would happen in a shader and I would still need to make my own rendering pipeline. The first few days of the project was mostly spent ripping out old mesh based code and replacing the pipeline with just a fullscreen quad output from a vertex shader going into a pixel shader doing all the raymarching.</p>
 <h1 id="performance">Performance</h1>
-<p>I knew before even starting that performance would be a big issue since for every rays scene sample loads of complex math functions would be calculated each frame. One major optimization I implemented was to use a 3D texture as a brickmap to cache previously calculated values to be able to sample the brickmap instead of recalculating all SDFs. To be able to increase the render distance without consuming too much memory I used multiple brickmaps stacked on top of each other with increasing size but decreasing resolution acting as LOD for objects farther away.</p>
-<p><img src="/images/brickmap.gif" alt="brickmap.gif"></p>
+<p>I knew before even starting that performance would be a big issue since for every ray&rsquo;s scene sample many complex math functions would be calculated each frame. One major optimization I implemented was to use a 3D texture as a brickmap to cache previously calculated values to be able to sample the brickmap instead of recalculating all SDFs. To be able to increase the render distance without consuming too much memory I used multiple brickmaps stacked on top of each other with increasing size but decreasing resolution acting as LOD for objects farther away.</p>
+<div style="text-align: left;">
+  <video width="50%" autoplay muted loop>
+    <source src="/videos/brickmap.mp4" type="video/mp4">
+  </video>
+</div>
 <h6 id="brickmap-cells-colored-and-size-exaggerated-for-demonstration">(Brickmap cells colored and size exaggerated for demonstration)</h6>
 <h1 id="sdf-operations">SDF operations</h1>
-<p>One of the things that really interested me with SDF is the flexibility you can do with SDF operations due SDF being only mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn&rsquo;t really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.</p>
+<p>One of the things that really interested me with SDF is the flexibility you can do with SDF operations due to SDF being purely mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn&rsquo;t really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.</p>
 <h4 id="union">Union</h4>
 <p>A union is defined by the minimum distance of two shapes resulting in them combining into one. This is the most common operation as the entire scene could be viewed as one big union.
 <figure><img src="/images/union.png" width="30%">
@@ -761,6 +765,7 @@ SDF Renderer | Elias Öström
 })();
 </script>
 
+<h6 id="drag-shapes-to-reposition">(Drag shapes to reposition)</h6>
 <h1 id="geometry-rebuilding">Geometry Rebuilding</h1>
 <p>One big advantage with SDF rendering is the low cost of geometry rebuilding you get in exchange for the cost of rendering. A popular effect is to use a smooth min instead of a normal min function when doing the different SDF operations. This is a very cheap effect that creates a sort of &ldquo;blobby&rdquo; look to the scene and was the first thing I decided to implement. Since the output of SDFs is just a single float that can be transformed however needed to achieve an effect. Below are some examples of simple effects you can apply to either individual objects or an entire scene.</p>
 <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
@@ -768,7 +773,7 @@ SDF Renderer | Elias Öström
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/sdf-smoothing.mp4" type="video/mp4">
     </video>
-    <h6>Smooth Unions</h6>
+    <h6>Smoothing</h6>
   </div>
   <div style="text-align: center; width: 45%;">
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
