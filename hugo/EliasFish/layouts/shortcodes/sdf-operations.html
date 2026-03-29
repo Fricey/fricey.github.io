@@ -1,0 +1,263 @@
+<div id="sdf-ops-wrap" style="width:100%;margin:1.5rem 0;">
+  <canvas id="sdf-ops-canvas" style="display:block;width:100%;border-radius:4px;cursor:grab;"></canvas>
+  <div id="sdf-ops-btns" style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;"></div>
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('sdf-ops-canvas');
+  const ctx    = canvas.getContext('2d');
+  const btnsEl = document.getElementById('sdf-ops-btns');
+
+  // ── Color helpers (same as raymarching demo) ──────────────────────────────
+  function getColors() {
+    const bodyStyle = getComputedStyle(document.body);
+    const codeEl    = document.querySelector('pre code, .highlight pre, pre, code');
+    const codeStyle = codeEl ? getComputedStyle(codeEl) : null;
+    return {
+      bg:      codeStyle ? codeStyle.backgroundColor : bodyStyle.backgroundColor,
+      primary: codeStyle ? codeStyle.color           : bodyStyle.color,
+      text:    bodyStyle.color,
+    };
+  }
+
+  function toRGB(cssColor) {
+    const tmp = document.createElement('canvas');
+    tmp.width = tmp.height = 1;
+    const c = tmp.getContext('2d');
+    c.fillStyle = cssColor;
+    c.fillRect(0, 0, 1, 1);
+    const d = c.getImageData(0, 0, 1, 1).data;
+    return [d[0], d[1], d[2]];
+  }
+
+  // ── Operations ────────────────────────────────────────────────────────────
+  const OPS = [
+    { id: 'union',     label: 'Union',     fn: (a, b) => Math.min(a, b) },
+    { id: 'subtract',  label: 'Subtract',  fn: (a, b) => Math.max(a, -b) },
+    { id: 'intersect', label: 'Intersect', fn: (a, b) => Math.max(a, b) },
+  ];
+  let activeOp = 0;
+
+  // ── SDF ───────────────────────────────────────────────────────────────────
+  function circleSDF(px, py, cx, cy, r) {
+    return Math.hypot(px - cx, py - cy) - r;
+  }
+
+  // ── State ─────────────────────────────────────────────────────────────────
+  let shapes, drag, dragOffX, dragOffY;
+
+  function initShapes() {
+    const W = canvas.width, H = canvas.height;
+    shapes = [
+      { x: W * 0.38, y: H * 0.5, r: W * 0.15 },
+      { x: W * 0.62, y: H * 0.5, r: W * 0.13 },
+    ];
+  }
+
+  // ── Resize ────────────────────────────────────────────────────────────────
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const wasEmpty = !shapes;
+    canvas.width  = w;
+    canvas.height = Math.round(w * 0.56);
+    if (wasEmpty) initShapes();
+    else {
+      // rescale positions
+      shapes[0].x = canvas.width  * 0.38;
+      shapes[0].y = canvas.height * 0.5;
+      shapes[0].r = canvas.width  * 0.15;
+      shapes[1].x = canvas.width  * 0.62;
+      shapes[1].y = canvas.height * 0.5;
+      shapes[1].r = canvas.width  * 0.13;
+    }
+  }
+
+  // ── Draw ──────────────────────────────────────────────────────────────────
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    const colors = getColors();
+    const [pr, pg, pb] = toRGB(colors.primary);
+    const [br, bg_, bb] = toRGB(colors.bg);
+    const op = OPS[activeOp];
+    const k  = canvas.width * 0.06; // smooth blend radius in pixels
+
+    // ── Background ──────────────────────────────────────────────────────────
+    ctx.fillStyle = colors.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = `rgba(${pr},${pg},${pb},0.06)`;
+    ctx.lineWidth = 1;
+    const step = W / 14;
+    for (let x = 0; x <= W; x += step) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for (let y = 0; y <= H; y += step) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+    const s0 = shapes[0], s1 = shapes[1];
+
+    // ── Per-pixel SDF fill (stride 3 for perf) ───────────────────────────────
+    const stride = 3;
+    const imgData = ctx.getImageData(0, 0, W, H);
+    const data    = imgData.data;
+
+    for (let py = 0; py < H; py += stride) {
+      for (let px = 0; px < W; px += stride) {
+        const dA = circleSDF(px, py, s0.x, s0.y, s0.r);
+        const dB = circleSDF(px, py, s1.x, s1.y, s1.r);
+        const d  = activeOp === 3
+          ? op.fn(dA, dB, k)
+          : op.fn(dA, dB);
+
+        if (d < 0) {
+          // inside the combined shape
+          const alpha = Math.min(1, -d / 4) * 0.55;
+          const r_ = Math.round(br + (pr - br) * 0.35);
+          const g_ = Math.round(bg_ + (pg - bg_) * 0.35);
+          const b_ = Math.round(bb + (pb - bb) * 0.35);
+          for (let sy = 0; sy < stride && py+sy < H; sy++) {
+            for (let sx = 0; sx < stride && px+sx < W; sx++) {
+              const i = ((py+sy)*W + (px+sx)) * 4;
+              // blend over bg
+              data[i]   = Math.round(br   + (r_ - br)   * alpha);
+              data[i+1] = Math.round(bg_  + (g_ - bg_)  * alpha);
+              data[i+2] = Math.round(bb   + (b_ - bb)   * alpha);
+              data[i+3] = 255;
+            }
+          }
+        }
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+
+    // ── Individual shape outlines ────────────────────────────────────────────
+    [s0, s1].forEach((s, i) => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(${pr},${pg},${pb},0.3)`;
+      ctx.setLineDash([5, 5]);
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // center dot
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 4, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${pr},${pg},${pb},0.7)`;
+      ctx.fill();
+
+      // label
+      ctx.font = `${Math.round(W*0.018)}px "Fira Code", monospace`;
+      ctx.fillStyle = `rgba(${pr},${pg},${pb},0.5)`;
+      ctx.fillText(i === 0 ? 'A' : 'B', s.x + 8, s.y - 8);
+    });
+
+    // ── Result outline (the combined SDF boundary) ───────────────────────────
+    // Draw a brighter outline along d≈0 using a thin strip
+    const outlineData = ctx.getImageData(0, 0, W, H);
+    const od = outlineData.data;
+    const edgeW = 1.5;
+    for (let py = 0; py < H; py++) {
+      for (let px = 0; px < W; px++) {
+        const dA = circleSDF(px, py, s0.x, s0.y, s0.r);
+        const dB = circleSDF(px, py, s1.x, s1.y, s1.r);
+        const d  = activeOp === 3 ? op.fn(dA, dB, k) : op.fn(dA, dB);
+        if (Math.abs(d) < edgeW) {
+          const t = 1 - Math.abs(d) / edgeW;
+          const i = (py * W + px) * 4;
+          od[i]   = Math.round(od[i]   + (pr - od[i])   * t * 0.9);
+          od[i+1] = Math.round(od[i+1] + (pg - od[i+1]) * t * 0.9);
+          od[i+2] = Math.round(od[i+2] + (pb - od[i+2]) * t * 0.9);
+          od[i+3] = 255;
+        }
+      }
+    }
+    ctx.putImageData(outlineData, 0, 0);
+
+    // ── Op label ─────────────────────────────────────────────────────────────
+    ctx.font = `${Math.round(W*0.02)}px "Fira Code", monospace`;
+    ctx.fillStyle = `rgba(${pr},${pg},${pb},0.6)`;
+    ctx.fillText(op.label, W*0.04, H*0.96);
+  }
+
+  // ── Buttons ───────────────────────────────────────────────────────────────
+  function buildButtons() {
+    btnsEl.innerHTML = '';
+    const colors = getColors();
+    const [pr, pg, pb] = toRGB(colors.primary);
+
+    OPS.forEach((op, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = op.label;
+      const isActive = i === activeOp;
+      btn.style.cssText = `
+        font-family: monospace;
+        font-size: 12px;
+        padding: 4px 12px;
+        background: ${isActive ? `rgba(${pr},${pg},${pb},0.15)` : 'transparent'};
+        border: 1px solid rgba(${pr},${pg},${pb},${isActive ? 0.7 : 0.25});
+        color: rgba(${pr},${pg},${pb},${isActive ? 1 : 0.5});
+        border-radius: 2px;
+        cursor: pointer;
+        letter-spacing: 0.05em;
+        transition: all 0.15s;
+      `;
+      btn.addEventListener('click', () => { activeOp = i; buildButtons(); draw(); });
+      btnsEl.appendChild(btn);
+    });
+  }
+
+  // ── Drag ──────────────────────────────────────────────────────────────────
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const scaleX = canvas.width  / r.width;
+    const scaleY = canvas.height / r.height;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return [(clientX - r.left) * scaleX, (clientY - r.top) * scaleY];
+  }
+
+  function onDown(e) {
+    const [mx, my] = getPos(e);
+    for (let i = 0; i < shapes.length; i++) {
+      const s = shapes[i];
+      if (Math.hypot(mx - s.x, my - s.y) < s.r) {
+        drag = i;
+        dragOffX = mx - s.x;
+        dragOffY = my - s.y;
+        canvas.style.cursor = 'grabbing';
+        break;
+      }
+    }
+  }
+
+  function onMove(e) {
+    if (drag == null) return;
+    e.preventDefault();
+    const [mx, my] = getPos(e);
+    shapes[drag].x = mx - dragOffX;
+    shapes[drag].y = my - dragOffY;
+    draw();
+  }
+
+  function onUp() {
+    drag = null;
+    canvas.style.cursor = 'grab';
+  }
+
+  canvas.addEventListener('mousedown',  onDown);
+  canvas.addEventListener('mousemove',  onMove);
+  canvas.addEventListener('mouseup',    onUp);
+  canvas.addEventListener('mouseleave', onUp);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); onDown(e); }, { passive: false });
+  canvas.addEventListener('touchmove',  e => { e.preventDefault(); onMove(e); }, { passive: false });
+  canvas.addEventListener('touchend',   onUp);
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  buildButtons();
+  resize();
+  requestAnimationFrame(() => { requestAnimationFrame(() => draw()); });
+  window.addEventListener('resize', () => { resize(); draw(); });
+  new MutationObserver(() => draw())
+    .observe(document.body, { attributeFilter: ['class'] });
+})();
+</script>

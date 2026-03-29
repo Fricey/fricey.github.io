@@ -150,7 +150,7 @@
     ctx.beginPath(); ctx.arc(ox,oy,9,0,Math.PI*2);
     ctx.strokeStyle = `rgba(${pRGB},0.3)`; ctx.lineWidth=1.5; ctx.stroke();
 
-    ctx.font = `${Math.round(W*0.018)}px monospace`;
+    ctx.font = `${Math.round(W*0.018)}px "Fira Code", monospace`;
     ctx.fillStyle = `rgba(${pRGB},0.55)`;
     ctx.fillText('origin', ox+12, oy-10);
     ctx.fillStyle = hit ? 'rgba(255,100,80,0.8)' : `rgba(${pRGB},0.6)`;
@@ -159,7 +159,9 @@
 
   // Run immediately — the canvas is already in the DOM above this script tag
   resize();
-  draw();
+  requestAnimationFrame(() => { requestAnimationFrame(() => draw()); });
   window.addEventListener('resize', () => { resize(); draw(); });
+  new MutationObserver(() => draw())
+    .observe(document.body, { attributeFilter: ['class'] });
 })();
 </script>

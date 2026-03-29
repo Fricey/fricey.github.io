@@ -54,23 +54,23 @@ params:
     lineHeight: 1.5
     textAlign: left
 
-  color:
-    textColor: "#e4e6eb"
-    secondaryTextColor: "#b0b3b8"
-    textLinkColor: "#38bdf8"
-    backgroundColor: "#0f172a"
-    secondaryBackgroundColor: "#1e293b"
-    primaryColor: "#38bdf8"
-    secondaryColor: "#1e293b"
+  # color:
+  #   textColor: "#e4e6eb"
+  #   secondaryTextColor: "#b0b3b8"
+  #   textLinkColor: "#38bdf8"
+  #   backgroundColor: "#0f172a"
+  #   secondaryBackgroundColor: "#1e293b"
+  #   primaryColor: "#38bdf8"
+  #   secondaryColor: "#1e293b"
 
-  darkmode:
-    textColor: "#e4e6eb"
-    secondaryTextColor: "#b0b3b8"
-    textLinkColor: "#38bdf8"
-    backgroundColor: "#0a1628"
-    secondaryBackgroundColor: "#1e293b"
-    primaryColor: "#38bdf8"
-    secondaryColor: "#1e293b"
+  # darkmode:
+  #   textColor: "#e4e6eb"
+  #   secondaryTextColor: "#b0b3b8"
+  #   textLinkColor: "#38bdf8"
+  #   backgroundColor: "#0f172a"
+  #   secondaryBackgroundColor: "#1e293b"
+  #   primaryColor: "#38bdf8"
+  #   secondaryColor: "#1e293b"
 
   navbar:
     align: ms-auto

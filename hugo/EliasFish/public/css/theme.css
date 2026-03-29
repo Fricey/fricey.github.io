@@ -10,13 +10,13 @@
 
 /* dark mode */
 .dark {
-    --background-color: var(--background-color-dark) !important;
-    --secondary-background-color: var(--secondary-background-color-dark) !important;
-    --text-color: var(--text-color-dark) !important;
-    --text-secondary-color: var(--text-secondary-color-dark) !important;
-    --text-link-color: var(--text-link-color-dark) !important;
-    --primary-color: var(--primary-color-dark);
-    --secondary-color: var(--secondary-color-dark);
+    --background-color: #0f172a !important;
+    --secondary-background-color: #1e293b !important;
+    --text-color: #e4e6eb !important;
+    --text-secondary-color: #b0b3b8 !important;
+    --text-link-color: #38bdf8 !important;
+    --primary-color: #38bdf8;
+    --secondary-color: #1e293b;
 }
 
 .dark #footer-socialNetworks-github-svg-path{
@@ -48,4 +48,14 @@ body.dark #moon {
 
 body:not(.dark) #sun {
     display: none;
+}
+
+body:not(.dark) {
+    --background-color: #bfdbfe !important;
+    --secondary-background-color: #93c5fd !important;
+    --text-color: #0f172a !important;
+    --text-secondary-color: #1e3a5f !important;
+    --text-link-color: #1d4ed8 !important;
+    --primary-color: #1d4ed8;
+    --secondary-color: #93c5fd;
 }

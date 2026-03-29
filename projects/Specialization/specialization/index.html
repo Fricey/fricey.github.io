@@ -54,13 +54,13 @@
 
 <style>
     :root {
-        --text-color: #e4e6eb;
-        --text-secondary-color: #b0b3b8;
-        --text-link-color: #38bdf8;
-        --background-color: #0f172a;
-        --secondary-background-color: #1e293b;
-        --primary-color: #38bdf8;
-        --secondary-color: #1e293b;
+        --text-color: #343a40;
+        --text-secondary-color: #6c757d;
+        --text-link-color: #007bff;
+        --background-color: #eaedf0;
+        --secondary-background-color: #64ffda1a;
+        --primary-color: #007bff;
+        --secondary-color: #f8f9fa;
 
          
         --text-color-dark: #e4e6eb;
@@ -294,10 +294,11 @@ SDF Renderer | Elias Öström
           </div>
           
           <article class="page-content  p-2">
-          <h1 id="introduction">Introduction</h1>
-<p>For my specialization project at the game assembly i decided i wanted to explore something that had recently caught my interest. A <a href="https://www.codrea.nu">friend</a> of mine had shown me a video of someone making an entire game engine using only signed distance functions (SDF), a form of rendering not very used in games in general. My main goal was mostly to try it out and try to make an SDF renderer as optimized as possible in the time allocated for the project.</p>
+          <p><img src="/projects/Specialization/Specialization-thumb.jpg" alt="Cover Image"></p>
+<h1 id="introduction">Introduction</h1>
+<p>For my specialization project at the game assembly I decided I wanted to explore something that had recently caught my interest. A <a href="https://www.codrea.nu">friend</a> of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF). It&rsquo;s not a very popular form of rendering in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.</p>
 <h1 id="what-is-sdf">What is SDF?</h1>
-<p>Signed distance functions are formulas that take a point as input and return its distance to the shapes surface with a negative value if the point is inside the shape. Below is an example of what a spheres SDF would look like in HLSL:</p>
+<p>Signed distance functions are formulas that take a point as input and return its distance to the shape&rsquo;s surface with a negative value if the point is inside the shape. Below is an example of what a spheres SDF would look like in HLSL:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-HLSL" data-lang="HLSL"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> SphereSDF(<span style="color:#66d9ef">float3</span> aPoint, <span style="color:#66d9ef">float</span> aRadius)
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> length(aPoint) <span style="color:#f92672">-</span> aRadius;
@@ -455,7 +456,7 @@ SDF Renderer | Elias Öström
     ctx.beginPath(); ctx.arc(ox,oy,9,0,Math.PI*2);
     ctx.strokeStyle = `rgba(${pRGB},0.3)`; ctx.lineWidth=1.5; ctx.stroke();
 
-    ctx.font = `${Math.round(W*0.018)}px monospace`;
+    ctx.font = `${Math.round(W*0.018)}px "Fira Code", monospace`;
     ctx.fillStyle = `rgba(${pRGB},0.55)`;
     ctx.fillText('origin', ox+12, oy-10);
     ctx.fillStyle = hit ? 'rgba(255,100,80,0.8)' : `rgba(${pRGB},0.6)`;
@@ -464,32 +465,22 @@ SDF Renderer | Elias Öström
 
   
   resize();
-  draw();
+  requestAnimationFrame(() => { requestAnimationFrame(() => draw()); });
   window.addEventListener('resize', () => { resize(); draw(); });
+  new MutationObserver(() => draw())
+    .observe(document.body, { attributeFilter: ['class'] });
 })();
 </script></p>
 <h1 id="project-setup">Project Setup</h1>
-<p>As engine i decided to use my project from our old graphics course. I decided to do this mostly to minimize bloat as i knew most logic would happen in a shader and i would still need to make my own rendering pipeline. The first few days of the project was mostly spent ripping out old mesh based code and replacing the pipeline with just a fullscreen quad output from a vertex shader going into a pixel shader doing all the raymarching.</p>
+<p>As an engine I decided to use my project from our old graphics course. I decided to do this mostly to minimize bloat as I knew most logic would happen in a shader and I would still need to make my own rendering pipeline. The first few days of the project was mostly spent ripping out old mesh based code and replacing the pipeline with just a fullscreen quad output from a vertex shader going into a pixel shader doing all the raymarching.</p>
 <h1 id="performance">Performance</h1>
-<p>I knew before even starting that performance would be a big issue since for every rays scene sample loads of complex math functions would be calculated each frame. One major optimization i implemented was to use a 3D texture as a brickmap to cache previously calculated values to be able to sample the brickmap instead of recalculating all SDFs. To be able to increase the render distance without consuming too much memory i used multiple brickmaps stacked on top of eachother with increasing size but decreasing resolution acting as LOD for objects farther away.</p>
+<p>I knew before even starting that performance would be a big issue since for every rays scene sample loads of complex math functions would be calculated each frame. One major optimization I implemented was to use a 3D texture as a brickmap to cache previously calculated values to be able to sample the brickmap instead of recalculating all SDFs. To be able to increase the render distance without consuming too much memory I used multiple brickmaps stacked on top of each other with increasing size but decreasing resolution acting as LOD for objects farther away.</p>
 <p><img src="/images/brickmap.gif" alt="brickmap.gif"></p>
-<h6 id="brickmap-cells-colored-and-size-exaggerated-for-demonstation">(Brickmap cells colored and size exaggerated for demonstation)</h6>
+<h6 id="brickmap-cells-colored-and-size-exaggerated-for-demonstration">(Brickmap cells colored and size exaggerated for demonstration)</h6>
 <h1 id="sdf-operations">SDF operations</h1>
-<p>One of the things that really interested me with SDF is the flexibility you can do with SDF operations due SDF being only mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldnt really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations i decided to implement were unions, subtractions and intersections.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-HLSL" data-lang="HLSL"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> Union( <span style="color:#66d9ef">float</span> aShapeA, <span style="color:#66d9ef">float</span> aShapeB )
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> min(aShapeA,aShapeB);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> Subtraction( <span style="color:#66d9ef">float</span> aShape, <span style="color:#66d9ef">float</span> aShapeB )
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> max(<span style="color:#f92672">-</span>aShapeA,aShapeB);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> Intersection( <span style="color:#66d9ef">float</span> aShape, <span style="color:#66d9ef">float</span> aShapeB )
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> max(aShapeA,aShapeB);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="union">Union</h4>
-<p>A union is defined by the minimum distance of two shapes resulting in them compining into one. This is the most common operation as the entire scene could be viewed as one big union.
+<p>One of the things that really interested me with SDF is the flexibility you can do with SDF operations due SDF being only mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn&rsquo;t really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.</p>
+<h4 id="union">Union</h4>
+<p>A union is defined by the minimum distance of two shapes resulting in them combining into one. This is the most common operation as the entire scene could be viewed as one big union.
 <figure><img src="/images/union.png" width="30%">
 </figure>
 </p>
@@ -501,14 +492,312 @@ SDF Renderer | Elias Öström
 </p>
 <h6 id="max-ab">max(-a,b)</h6>
 <h4 id="intersection">Intersection</h4>
-<p>An intersection only shows the part where two shapes intersect. This is something i implemented but ended up not using as most things didn&rsquo;t intersect so it made most of the scene invisible.
+<p>An intersection only shows the part where two shapes intersect. This is something I implemented but ended up not using as most things didn&rsquo;t intersect so it made most of the scene invisible.
 <figure><img src="/images/intersection.png" width="30%">
 </figure>
 </p>
-<h6 id="maxashapeaashapeb">max(aShapeA,aShapeB)</h6>
-<h4 id="smoothing">Smoothing</h4>
-<p>All of these functions also have smoothed equivalents that can be used to create a &ldquo;blobby&rdquo; look to shapes which is something i ofcourse decided to implement.</p>
+<h6 id="maxab">max(a,b)</h6>
+<div id="sdf-ops-wrap" style="width:100%;margin:1.5rem 0;">
+  <canvas id="sdf-ops-canvas" style="display:block;width:100%;border-radius:4px;cursor:grab;"></canvas>
+  <div id="sdf-ops-btns" style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;"></div>
+</div>
 
+<script>
+(function() {
+  const canvas = document.getElementById('sdf-ops-canvas');
+  const ctx    = canvas.getContext('2d');
+  const btnsEl = document.getElementById('sdf-ops-btns');
+
+  
+  function getColors() {
+    const bodyStyle = getComputedStyle(document.body);
+    const codeEl    = document.querySelector('pre code, .highlight pre, pre, code');
+    const codeStyle = codeEl ? getComputedStyle(codeEl) : null;
+    return {
+      bg:      codeStyle ? codeStyle.backgroundColor : bodyStyle.backgroundColor,
+      primary: codeStyle ? codeStyle.color           : bodyStyle.color,
+      text:    bodyStyle.color,
+    };
+  }
+
+  function toRGB(cssColor) {
+    const tmp = document.createElement('canvas');
+    tmp.width = tmp.height = 1;
+    const c = tmp.getContext('2d');
+    c.fillStyle = cssColor;
+    c.fillRect(0, 0, 1, 1);
+    const d = c.getImageData(0, 0, 1, 1).data;
+    return [d[0], d[1], d[2]];
+  }
+
+  
+  const OPS = [
+    { id: 'union',     label: 'Union',     fn: (a, b) => Math.min(a, b) },
+    { id: 'subtract',  label: 'Subtract',  fn: (a, b) => Math.max(a, -b) },
+    { id: 'intersect', label: 'Intersect', fn: (a, b) => Math.max(a, b) },
+  ];
+  let activeOp = 0;
+
+  
+  function circleSDF(px, py, cx, cy, r) {
+    return Math.hypot(px - cx, py - cy) - r;
+  }
+
+  
+  let shapes, drag, dragOffX, dragOffY;
+
+  function initShapes() {
+    const W = canvas.width, H = canvas.height;
+    shapes = [
+      { x: W * 0.38, y: H * 0.5, r: W * 0.15 },
+      { x: W * 0.62, y: H * 0.5, r: W * 0.13 },
+    ];
+  }
+
+  
+  function resize() {
+    const w = canvas.parentElement.clientWidth;
+    const wasEmpty = !shapes;
+    canvas.width  = w;
+    canvas.height = Math.round(w * 0.56);
+    if (wasEmpty) initShapes();
+    else {
+      
+      shapes[0].x = canvas.width  * 0.38;
+      shapes[0].y = canvas.height * 0.5;
+      shapes[0].r = canvas.width  * 0.15;
+      shapes[1].x = canvas.width  * 0.62;
+      shapes[1].y = canvas.height * 0.5;
+      shapes[1].r = canvas.width  * 0.13;
+    }
+  }
+
+  
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    const colors = getColors();
+    const [pr, pg, pb] = toRGB(colors.primary);
+    const [br, bg_, bb] = toRGB(colors.bg);
+    const op = OPS[activeOp];
+    const k  = canvas.width * 0.06; 
+
+    
+    ctx.fillStyle = colors.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    
+    ctx.strokeStyle = `rgba(${pr},${pg},${pb},0.06)`;
+    ctx.lineWidth = 1;
+    const step = W / 14;
+    for (let x = 0; x <= W; x += step) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+    for (let y = 0; y <= H; y += step) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+    const s0 = shapes[0], s1 = shapes[1];
+
+    
+    const stride = 3;
+    const imgData = ctx.getImageData(0, 0, W, H);
+    const data    = imgData.data;
+
+    for (let py = 0; py < H; py += stride) {
+      for (let px = 0; px < W; px += stride) {
+        const dA = circleSDF(px, py, s0.x, s0.y, s0.r);
+        const dB = circleSDF(px, py, s1.x, s1.y, s1.r);
+        const d  = activeOp === 3
+          ? op.fn(dA, dB, k)
+          : op.fn(dA, dB);
+
+        if (d < 0) {
+          
+          const alpha = Math.min(1, -d / 4) * 0.55;
+          const r_ = Math.round(br + (pr - br) * 0.35);
+          const g_ = Math.round(bg_ + (pg - bg_) * 0.35);
+          const b_ = Math.round(bb + (pb - bb) * 0.35);
+          for (let sy = 0; sy < stride && py+sy < H; sy++) {
+            for (let sx = 0; sx < stride && px+sx < W; sx++) {
+              const i = ((py+sy)*W + (px+sx)) * 4;
+              
+              data[i]   = Math.round(br   + (r_ - br)   * alpha);
+              data[i+1] = Math.round(bg_  + (g_ - bg_)  * alpha);
+              data[i+2] = Math.round(bb   + (b_ - bb)   * alpha);
+              data[i+3] = 255;
+            }
+          }
+        }
+      }
+    }
+    ctx.putImageData(imgData, 0, 0);
+
+    
+    [s0, s1].forEach((s, i) => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.strokeStyle = `rgba(${pr},${pg},${pb},0.3)`;
+      ctx.setLineDash([5, 5]);
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 4, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${pr},${pg},${pb},0.7)`;
+      ctx.fill();
+
+      
+      ctx.font = `${Math.round(W*0.018)}px "Fira Code", monospace`;
+      ctx.fillStyle = `rgba(${pr},${pg},${pb},0.5)`;
+      ctx.fillText(i === 0 ? 'A' : 'B', s.x + 8, s.y - 8);
+    });
+
+    
+    
+    const outlineData = ctx.getImageData(0, 0, W, H);
+    const od = outlineData.data;
+    const edgeW = 1.5;
+    for (let py = 0; py < H; py++) {
+      for (let px = 0; px < W; px++) {
+        const dA = circleSDF(px, py, s0.x, s0.y, s0.r);
+        const dB = circleSDF(px, py, s1.x, s1.y, s1.r);
+        const d  = activeOp === 3 ? op.fn(dA, dB, k) : op.fn(dA, dB);
+        if (Math.abs(d) < edgeW) {
+          const t = 1 - Math.abs(d) / edgeW;
+          const i = (py * W + px) * 4;
+          od[i]   = Math.round(od[i]   + (pr - od[i])   * t * 0.9);
+          od[i+1] = Math.round(od[i+1] + (pg - od[i+1]) * t * 0.9);
+          od[i+2] = Math.round(od[i+2] + (pb - od[i+2]) * t * 0.9);
+          od[i+3] = 255;
+        }
+      }
+    }
+    ctx.putImageData(outlineData, 0, 0);
+
+    
+    ctx.font = `${Math.round(W*0.02)}px "Fira Code", monospace`;
+    ctx.fillStyle = `rgba(${pr},${pg},${pb},0.6)`;
+    ctx.fillText(op.label, W*0.04, H*0.96);
+  }
+
+  
+  function buildButtons() {
+    btnsEl.innerHTML = '';
+    const colors = getColors();
+    const [pr, pg, pb] = toRGB(colors.primary);
+
+    OPS.forEach((op, i) => {
+      const btn = document.createElement('button');
+      btn.textContent = op.label;
+      const isActive = i === activeOp;
+      btn.style.cssText = `
+        font-family: monospace;
+        font-size: 12px;
+        padding: 4px 12px;
+        background: ${isActive ? `rgba(${pr},${pg},${pb},0.15)` : 'transparent'};
+        border: 1px solid rgba(${pr},${pg},${pb},${isActive ? 0.7 : 0.25});
+        color: rgba(${pr},${pg},${pb},${isActive ? 1 : 0.5});
+        border-radius: 2px;
+        cursor: pointer;
+        letter-spacing: 0.05em;
+        transition: all 0.15s;
+      `;
+      btn.addEventListener('click', () => { activeOp = i; buildButtons(); draw(); });
+      btnsEl.appendChild(btn);
+    });
+  }
+
+  
+  function getPos(e) {
+    const r = canvas.getBoundingClientRect();
+    const scaleX = canvas.width  / r.width;
+    const scaleY = canvas.height / r.height;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return [(clientX - r.left) * scaleX, (clientY - r.top) * scaleY];
+  }
+
+  function onDown(e) {
+    const [mx, my] = getPos(e);
+    for (let i = 0; i < shapes.length; i++) {
+      const s = shapes[i];
+      if (Math.hypot(mx - s.x, my - s.y) < s.r) {
+        drag = i;
+        dragOffX = mx - s.x;
+        dragOffY = my - s.y;
+        canvas.style.cursor = 'grabbing';
+        break;
+      }
+    }
+  }
+
+  function onMove(e) {
+    if (drag == null) return;
+    e.preventDefault();
+    const [mx, my] = getPos(e);
+    shapes[drag].x = mx - dragOffX;
+    shapes[drag].y = my - dragOffY;
+    draw();
+  }
+
+  function onUp() {
+    drag = null;
+    canvas.style.cursor = 'grab';
+  }
+
+  canvas.addEventListener('mousedown',  onDown);
+  canvas.addEventListener('mousemove',  onMove);
+  canvas.addEventListener('mouseup',    onUp);
+  canvas.addEventListener('mouseleave', onUp);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); onDown(e); }, { passive: false });
+  canvas.addEventListener('touchmove',  e => { e.preventDefault(); onMove(e); }, { passive: false });
+  canvas.addEventListener('touchend',   onUp);
+
+  
+  buildButtons();
+  resize();
+  requestAnimationFrame(() => { requestAnimationFrame(() => draw()); });
+  window.addEventListener('resize', () => { resize(); draw(); });
+  new MutationObserver(() => draw())
+    .observe(document.body, { attributeFilter: ['class'] });
+})();
+</script>
+
+<h1 id="geometry-rebuilding">Geometry Rebuilding</h1>
+<p>One big advantage with SDF rendering is the low cost of geometry rebuilding you get in exchange for the cost of rendering. A popular effect is to use a smooth min instead of a normal min function when doing the different SDF operations. This is a very cheap effect that creates a sort of &ldquo;blobby&rdquo; look to the scene and was the first thing I decided to implement. Since the output of SDFs is just a single float that can be transformed however needed to achieve an effect. Below are some examples of simple effects you can apply to either individual objects or an entire scene.</p>
+<div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+  <div style="text-align: center; width: 45%;">
+    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/sdf-smoothing.mp4" type="video/mp4">
+    </video>
+    <h6>Smooth Unions</h6>
+  </div>
+  <div style="text-align: center; width: 45%;">
+    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/sdf-ripple.mp4" type="video/mp4">
+    </video>
+    <h6>Ripple Effect + Smoothing</h6>
+  </div>
+</div>
+<div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+  <div style="text-align: center; width: 45%;">
+    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/sdf-repeat.mp4" type="video/mp4">
+    </video>
+    <h6>Wrapping the sample point</h6>
+  </div>
+  <div style="text-align: center; width: 45%;">
+    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/sdf-bending.mp4" type="video/mp4">
+    </video>
+    <h6>Bending the sample point</h6>
+  </div>
+</div>
+<h1 id="results">Results</h1>
+<p>There are some things I would have liked to improve if I had more time. I would have really liked to get rid of some strange artifacts that appear sometimes. I am pretty satisfied with the optimizations but I would have liked it to be even better as now it runs at about 50 FPS with 50 shapes. I considered implementing quad trees to optimize distance checking but I don&rsquo;t think I would have had time. It would also have been nice if there was some sort of hierarchy/editor or something similar to be able to place and manipulate shapes in a more visual way. In general I&rsquo;m very satisfied with the project and I think it was very fun to work on as well as a great learning experience!</p>
+<div style="text-align: center;">
+  <video width="70%" autoplay muted loop>
+    <source src="/videos/sdf-lump-boomerang-fast.mp4" type="video/mp4">
+  </video>
+</div>
           </article>
         </div>
       </div>
