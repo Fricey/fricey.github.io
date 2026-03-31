@@ -2,34 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/projects/specialization/specialization/</loc>
+    <loc>https://elias.fish/projects/specialization/specialization/</loc>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://elias.fish/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/p5/p5/</loc>
+    <loc>https://elias.fish/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2026-02-14T20:53:59+01:00</lastmod>
+    <loc>https://elias.fish/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/p1/p1/</loc>
-    <lastmod>2026-02-14T20:53:59+01:00</lastmod>
+    <loc>https://elias.fish/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/p2/p2/</loc>
-    <lastmod>2026-02-14T20:53:59+01:00</lastmod>
+    <loc>https://elias.fish/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/p3/p3/</loc>
-    <lastmod>2026-02-14T20:53:59+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/projects/p4/</loc>
-    <lastmod>2026-02-14T20:53:59+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/projects/</loc>
-    <lastmod>2026-02-14T20:53:59+01:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-  </url><url>
-    <loc>http://localhost:1313/test/</loc>
+    <loc>https://elias.fish/test/</loc>
   </url>
 </urlset>
