@@ -10,7 +10,7 @@ weight = 1
 toc = false
 +++
 
-![Cover Image](/projects/Specialization/Specialization-thumb.jpg)
+![Cover Image](images/thumbs/Specialization-thumb.jpg)
 
 # Introduction
 For my specialization project at The Game Assembly I set out to create a real time SDF renderer. A [friend](https://www.codrea.nu) of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF), which caught my interest and made me want to try it out. It's uncommon in in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.
