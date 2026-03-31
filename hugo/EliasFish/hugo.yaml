@@ -38,7 +38,7 @@ params:
     <script src="/js/bubbles.js"></script>
 
   title: "Elias Öström"
-  description: "Game developer portfolio"
+  description: "min portfolio"
   favicon: "/fav.png"
 
   useBootstrapCDN: false
@@ -157,4 +157,6 @@ params:
     articleList: "Jan 2, 2006"
     articleRecent: "Jan 2, 2006"
 
-googleAnalytics: G-XXXXXXXXXX 
+services:
+  googleAnalytics:
+    ID: 'G-X6R90TDX84'
