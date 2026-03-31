@@ -4,7 +4,7 @@ summary  = "Real-time renderer using signed distance functions"
 projectLength = '2026 | 8 Weeks | 1 Person'
 badges = ["C++", "HLSL", "3D", "Graphics"]
 
-image = "/projects/Specialization/Specialization-thumb.jpg"
+image = "images/thumbs/Specialization-thumb.jpg"
 showFeaturedImage = false
 weight = 1
 toc = false
