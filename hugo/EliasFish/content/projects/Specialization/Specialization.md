@@ -1,6 +1,6 @@
 +++
 title = 'SDF Renderer'
-summary  = "Diablo clone"
+summary  = "Real-time renderer using signed distance functions"
 projectLength = '2026 | 8 Weeks | 1 Person'
 badges = ["C++", "HLSL", "3D", "Graphics"]
 

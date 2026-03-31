@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta charset="UTF-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -28,10 +28,24 @@
 
 
 
-<meta property="og:url" content="https://elias.fish/projects/specialization/specialization/">
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        }
+      </script>
+<meta property="og:url" content="http://localhost:1313/projects/specialization/specialization/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="SDF Renderer">
-  <meta property="og:description" content="Diablo clone">
+  <meta property="og:description" content="Real-time renderer using signed distance functions">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projects">
@@ -39,7 +53,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="SDF Renderer">
-  <meta name="twitter:description" content="Diablo clone">
+  <meta name="twitter:description" content="Real-time renderer using signed distance functions">
 
 
 
@@ -275,10 +289,25 @@ SDF Renderer | Elias Öström
         <div class="pr-lg-4">
           <div class="title mb-5">
             <h1 class="text-center mb-4">SDF Renderer</h1>
-            
             <div class="text-center">
               
-                <span>2026 | 8 Weeks | 1 Person</span>
+                
+                
+                  
+                    <span class="me-2">2026</span>
+                  
+                  <span class="me-2">|</span>
+                
+                  
+                    <span class="me-2">8 Weeks</span>
+                  
+                  <span class="me-2">|</span>
+                
+                  
+                    <span class="me-2">1 Person</span>
+                  
+                  
+                
               
               <br>
               
@@ -293,7 +322,7 @@ SDF Renderer | Elias Öström
             </div>
           </div>
           
-          <article class="page-content  p-2">
+          <article class="page-content p-2">
           <p><img src="/projects/Specialization/Specialization-thumb.jpg" alt="Cover Image"></p>
 <h1 id="introduction">Introduction</h1>
 <p>For my specialization project at The Game Assembly I set out to create a real time SDF renderer. A <a href="https://www.codrea.nu">friend</a> of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF), which caught my interest and made me want to try it out. It&rsquo;s uncommon in in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.</p>
@@ -828,10 +857,12 @@ SDF Renderer | Elias Öström
 </section>
 
 
+
+
 <div class="progress">
   <div id="scroll-progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<Script src="/js/scrollProgressBar.js"></script>
+<script src="/js/scrollProgressBar.js"></script>
 
 
 <script>
@@ -889,7 +920,7 @@ SDF Renderer | Elias Öström
         <div class="col-md-4 text-center">
             
                 <div class="pb-2">
-                    <a href="https://elias.fish/" title="Elias Öström">
+                    <a href="http://localhost:1313/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>

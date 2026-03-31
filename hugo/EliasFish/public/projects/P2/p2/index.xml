@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>P2 on Elias Öström</title>
-    <link>https://elias.fish/projects/p2/p2/</link>
+    <link>http://localhost:1313/projects/p2/p2/</link>
     <description>Recent content in P2 on Elias Öström</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="https://elias.fish/projects/p2/p2/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/projects/p2/p2/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
