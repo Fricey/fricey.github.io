@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta charset="UTF-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -42,7 +42,7 @@
           gtag('config', 'G-X6R90TDX84');
         }
       </script>
-<meta property="og:url" content="https://elias.fish/projects/p5/">
+<meta property="og:url" content="http://localhost:1313/projects/p5/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="Spite: Equilibrium">
   <meta property="og:description" content="Top down action RPG based on Diablo 3">
@@ -343,7 +343,11 @@ Spite: Equilibrium | Elias Öström
 <h1 id="highlights">Highlights</h1>
 <h3 id="ui-rendering--pipeline">UI Rendering &amp; Pipeline</h3>
 <p>One of my major contributions to the project was the implementation of the UI framework. I designed a structure inspired by the Unity engine where all UI objects live under a canvas due to its familiar structure. <a href="https://www.albin.foo">Another programmer</a> and I concluded that editing raw JSON files was not a very nice workflow for our artists. We chose to make a custom tool built in the same engine as the game to make the export &amp; import as seamless as possible. We worked on it iteratively along with <a href="https://emiliageorgieva.artstation.com/">the UI artist</a> and even added features for technical artists to be able to set custom shaders and shader resources from the tool.</p>
-<p><img src="cool/video" alt="Ui designer video"></p>
+<div style="text-align: center;">
+   <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/ui-designer-showcase.mp4" type="video/mp4">
+    </video>
+  </div>
 <h3 id="binary-files">Binary Files</h3>
 <p>With Autodesk&rsquo;s FBX SDK not being thread-safe, <a href="https://www.albin.foo">another programmer</a> and I decided to make a custom file format (.bob) to enable multi-threaded scene loading. The BOB files were created from FBXs using a program we built to unpack FBX files and serialize them into raw binary data. BOB files also sped up loading times due to them being raw binary data. By eliminating the need to unpack the files it saved time reading which was a nice bonus!</p>
 
@@ -788,7 +792,7 @@ Spite: Equilibrium | Elias Öström
         <div class="col-md-4 text-center">
             
                 <div class="pb-2">
-                    <a href="https://elias.fish/" title="Elias Öström">
+                    <a href="http://localhost:1313/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
