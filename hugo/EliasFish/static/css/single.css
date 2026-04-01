@@ -4,6 +4,41 @@
     font-size: 17px;
 }
 
+.project-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 55vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+#single > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.project-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 20%, var(--background-color) 85%);
+}
+
+.project-banner-video {
+    overflow: hidden;
+}
+
+.project-banner-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 #single .title > h1 {
     opacity: 0.8;
     color: var(--text-color) !important;
@@ -28,43 +63,61 @@
 #single .page-content img {
     max-width: 100%;
     border-radius: 1rem;
+    cursor: zoom-in;
+}
+
+#single .page-content video {
+    max-width: 100%;
+    border-radius: 1rem;
+    cursor: zoom-in;
 }
 
 #single .page-content a {
     display: inline-block;
     text-decoration: none;
-    color: var(--text-link-color) !important;
+    color: var(--text-color) !important;
+    position: relative;
+}
+
+#single .page-content a::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 5px 2px;
+    background-repeat: repeat-x;
+    z-index: 0;
 }
 
 #single .page-content a::after {
     content: "";
-    display: block;
-    width: 0px;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
     height: 2px;
-    bottom: 0.37em;
     background-color: var(--primary-color);
-    transition: all 0.25s cubic-bezier(0.645,0.045,0.355,1);
-    opacity: 0.5;
+    z-index: 1;
+    transition: width 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-#single .page-content a:hover::after, #single .page-content a:focus::after, #single .page-content a:active::after {
+#single .page-content a:hover::after {
     width: 100%;
 }
 
 #single .page-content h1, #single .page-content h2, #single .page-content h3, #single .page-content h4, #single .page-content h5, #single .page-content h6 {
     color: var(--text-link-color) !important;
-    margin-bottom: 0.7em;
+    margin-top: 1.4em;
+    margin-bottom: 0.35em;
     opacity: 0.9;
 }
 
-#single .page-content h6
-{ 
-    opacity: 0.5;
-}
-
-.page-content h1:not(:first-of-type) 
-{ 
-    margin-top: 2em; 
+#single .page-content h1 {
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 #single .page-content blockquote {
@@ -330,3 +383,263 @@
 }
 
 /* Singlepage scroll progress end */
+
+/* Badges */
+#single .badge {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    margin: 0.2rem 0.2rem;
+}
+
+/* Credits */
+.modal-content {
+    background-color: var(--secondary-color) !important;
+    color: var(--text-color) !important;
+    font-family: 'Lora', serif !important;
+    font-size: 17px !important;
+    line-height: 1.7em !important;
+}
+
+.modal-body {
+    font-family: 'Lora', serif !important;
+    font-size: 17px !important;
+    line-height: 1.7em !important;
+    color: var(--text-color) !important;
+    opacity: 0.9;
+}
+
+.modal-body li {
+    font-family: 'Lora', serif !important;
+    font-size: 17px !important;
+    line-height: 1.7em !important;
+    color: var(--text-color) !important;
+    opacity: 0.9;
+    margin-bottom: 0.5em;
+}
+
+.modal-body p {
+    font-family: 'Lora', serif !important;
+    font-size: 17px !important;
+    line-height: 1.7em !important;
+    color: var(--text-color) !important;
+    opacity: 0.9;
+}
+
+.modal-body a {
+    display: inline-block;
+    text-decoration: none !important;
+    color: var(--text-color) !important;
+    position: relative;
+}
+
+.modal-body a::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 5px 2px;
+    background-repeat: repeat-x;
+    z-index: 0;
+}
+
+.modal-body a::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    z-index: 1;
+    transition: width 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.modal-body a:hover::after {
+    width: 100%;
+}
+
+.modal-dialog {
+    max-width: 700px !important;
+    width: 90vw !important;
+}
+
+.credits-columns {
+    columns: 2;
+    column-gap: 2rem;
+}
+
+.credits-group {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+}
+
+.credits-discipline {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+/* Scroll animations */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+
+.scroll-animate.scroll-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes word-fade-up {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.word-shimmer {
+    display: inline-block;
+    opacity: 0;
+    animation: word-fade-up 0.3s ease-out forwards;
+    animation-play-state: paused;
+}
+
+.shimmer-ready .word-shimmer {
+    animation-play-state: running;
+}
+
+.li-shimmer {
+    opacity: 0;
+    animation: word-fade-up 0.4s ease-out forwards;
+    animation-play-state: paused;
+}
+
+.shimmer-ready .li-shimmer {
+    animation-play-state: running;
+}
+
+.contributions-list {
+    list-style: none;
+    padding-left: 0 !important;
+    margin: 0.75rem 0 1.5rem;
+}
+
+.contributions-list li {
+    padding: 0.2rem 0;
+    font-size: 1.05rem;
+}
+
+.contributions-list li::before {
+    content: "› ";
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.credits-trigger {
+    display: inline-block;
+    cursor: pointer;
+    color: var(--text-color) !important;
+    position: relative;
+}
+
+.credits-trigger::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 5px 2px;
+    background-repeat: repeat-x;
+    z-index: 0;
+}
+
+.credits-trigger::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    z-index: 1;
+    transition: width 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.credits-trigger:hover::after {
+    width: 100%;
+}
+
+.contribution-link {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+    position: relative;
+}
+
+.contribution-link::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 5px 2px;
+    background-repeat: repeat-x;
+    z-index: 0;
+}
+
+.contribution-link::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    z-index: 1;
+    transition: width 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.contribution-link:hover::after {
+    width: 100%;
+}
+
+#lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: lightbox-fade-in 0.2s ease;
+}
+
+@keyframes lightbox-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+#lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 1rem;
+    filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.8));
+    object-fit: contain;
+    cursor: zoom-out;
+}
+
+#lightbox-overlay video {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 1rem;
+    object-fit: contain;
+}

@@ -1,19 +1,20 @@
 +++
 title = 'SDF Renderer'
 summary  = "Real-time renderer using signed distance functions"
-projectLength = '2026 | 8 Weeks | 1 Person'
-badges = ["C++", "HLSL", "3D", "Graphics"]
-
+projectLength = '8 Weeks | 1 Person | 2026'
+badges = ["C++", "HLSL", "DirectX", "3D", "Graphics"]
+credits = [ "Me 😀" ]
 image = "images/thumbs/Specialization-thumb.jpg"
+video = "/videos/sdf-smoothing.mp4"
 showFeaturedImage = false
 weight = 1
 toc = false
 +++
 
-![Cover Image](images/thumbs/Specialization-thumb.jpg)
+![Cover Image](/images/thumbs/Specialization-thumb.jpg)
 
 # Introduction
-For my specialization project at The Game Assembly I set out to create a real time SDF renderer. A [friend](https://www.codrea.nu) of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF), which caught my interest and made me want to try it out. It's uncommon in in games due to both its performance cost but also because of how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.
+For my specialization project at The Game Assembly I set out to create a real time SDF renderer. A [friend](https://www.codrea.nu) of mine showed me a video of someone making an entire game engine using only signed distance functions (SDF), which caught my interest and made me want to try it out. It's uncommon in games due to both its performance cost along with how different it is to create assets for than traditional mesh rendering. My main goal was mostly to try it out and attempt to make an SDF renderer as optimized as I possibly could in the time allocated for the project.
 
 # What is SDF?
 A signed distance function is a mathematical function that takes a point as input and returns the distance to a shape's surface. The "signed" part means the distance is negative if the point is inside the shape and positive if it's outside. Below is an example of what a sphere's SDF would look like in HLSL:
@@ -40,7 +41,7 @@ I knew before even starting that performance would be a big issue since for ever
 
 ###### (Brickmap cells colored and size exaggerated for demonstration)
 
-# SDF operations
+# SDF Operations
 One of the things that really interested me with SDF is the flexibility you can do with SDF operations due to SDF being purely mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn't really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.
 
 #### Union
@@ -62,16 +63,16 @@ An intersection only shows the part where two shapes intersect. This is somethin
 ###### (Drag shapes to reposition)
 
 # Geometry Rebuilding
-One big advantage with SDF rendering is the low cost of geometry rebuilding you get in exchange for the cost of rendering. A popular effect is to use a smooth min instead of a normal min function when doing the different SDF operations. This is a very cheap effect that creates a sort of "blobby" look to the scene and was the first thing I decided to implement. Since the output of SDFs is just a single float that can be transformed however needed to achieve an effect. Below are some examples of simple effects you can apply to either individual objects or an entire scene.
+One big advantage with SDF rendering is the low cost of geometry rebuilding you get in exchange for the cost of rendering. A popular effect is to use a smooth min instead of a normal min function when doing the different SDF operations. This is a very cheap effect that creates a sort of "blobby" look to the scene and was the first thing I decided to implement. Since the output of SDFs is just a single float it can be transformed however needed to achieve any desired effect. Below are some examples of simple effects you can apply to either individual objects or an entire scene.
 
 <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-  <div style="text-align: center; width: 45%;">
+  <div style="text-align: center; width: calc(50% - 8px);">
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/sdf-smoothing.mp4" type="video/mp4">
     </video>
     <h6>Smoothing</h6>
   </div>
-  <div style="text-align: center; width: 45%;">
+  <div style="text-align: center; width: calc(50% - 8px);">
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/sdf-ripple.mp4" type="video/mp4">
     </video>
@@ -79,13 +80,13 @@ One big advantage with SDF rendering is the low cost of geometry rebuilding you 
   </div>
 </div>
 <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-  <div style="text-align: center; width: 45%;">
+  <div style="text-align: center; width: calc(50% - 8px);">
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/sdf-repeat.mp4" type="video/mp4">
     </video>
     <h6>Wrapping the sample point</h6>
   </div>
-  <div style="text-align: center; width: 45%;">
+  <div style="text-align: center; width: calc(50% - 8px);">
     <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/sdf-bending.mp4" type="video/mp4">
     </video>
@@ -94,10 +95,10 @@ One big advantage with SDF rendering is the low cost of geometry rebuilding you 
 </div>
 
 # Results
-There are some things I would have liked to improve if I had more time. I would have really liked to get rid of some strange artifacts that appear sometimes. I am pretty satisfied with the optimizations but I would have liked it to be even better as now it runs at about 50 FPS with 50 shapes. I considered implementing quad trees to optimize distance checking but I don't think I would have had time. It would also have been nice if there was some sort of hierarchy/editor or something similar to be able to place and manipulate shapes in a more visual way. In general I'm very satisfied with the project and I think it was very fun to work on as well as a great learning experience!
+I'm very happy with how the optimizations turned out, caching the distances inside the brickmap was really interesting to work with and I learned a lot about unordered access views! If I had more time I would have really liked to get rid of some occasional rendering artifacts as well as being able to have more objects in the scene at the same time without it lagging too much. I considered implementing quad trees to optimize distance checking but I don't think I would have had the time. It would also have been nice if there was some sort of hierarchy/editor or something similar to be able to place and manipulate shapes in a more visual way. In general I'm very satisfied with the project and I think it was very fun to work on as well as a great learning experience!
 
 <div style="text-align: center;">
-  <video width="70%" autoplay muted loop>
+  <video width="100%" autoplay muted loop>
     <source src="/videos/sdf-lump-boomerang-fast.mp4" type="video/mp4">
   </video>
 </div>

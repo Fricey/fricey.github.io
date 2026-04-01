@@ -14,5 +14,40 @@
       <guid>https://elias.fish/projects/specialization/</guid>
       <description>Real-time renderer using signed distance functions</description>
     </item>
+    <item>
+      <title>Spite: Equilibrium</title>
+      <link>https://elias.fish/projects/p5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://elias.fish/projects/p5/</guid>
+      <description>Top down action RPG based on Diablo 3</description>
+    </item>
+    <item>
+      <title>O.S.T</title>
+      <link>https://elias.fish/projects/p4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://elias.fish/projects/p4/</guid>
+      <description>Isometric action game based on Tunic</description>
+    </item>
+    <item>
+      <title>Iris</title>
+      <link>https://elias.fish/projects/p3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://elias.fish/projects/p3/</guid>
+      <description>2D Platformer</description>
+    </item>
+    <item>
+      <title>Treasures Through Time</title>
+      <link>https://elias.fish/projects/p2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://elias.fish/projects/p2/</guid>
+      <description>Isometric puzzle mobile game</description>
+    </item>
+    <item>
+      <title>I Am Ambulance</title>
+      <link>https://elias.fish/projects/p1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://elias.fish/projects/p1/</guid>
+      <description>Endless runner</description>
+    </item>
   </channel>
 </rss>
