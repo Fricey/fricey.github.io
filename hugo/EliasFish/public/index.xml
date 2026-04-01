@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elias Öström</title>
-    <link>https://elias.fish/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Elias Öström</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="https://elias.fish/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>SDF Renderer</title>
-      <link>https://elias.fish/projects/specialization/</link>
+      <link>http://localhost:1313/projects/specialization/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/projects/specialization/</guid>
+      <guid>http://localhost:1313/projects/specialization/</guid>
       <description>Real-time renderer using signed distance functions</description>
     </item>
     <item>
       <title>About Me</title>
-      <link>https://elias.fish/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>&lt;p&gt;hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias hej jag heter elias&lt;/p&gt;</description>
     </item>
     <item>
       <title>Spite: Equilibrium</title>
-      <link>https://elias.fish/projects/p5/</link>
+      <link>http://localhost:1313/projects/p5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/projects/p5/</guid>
+      <guid>http://localhost:1313/projects/p5/</guid>
       <description>Top down action RPG based on Diablo 3</description>
     </item>
     <item>
       <title>O.S.T</title>
-      <link>https://elias.fish/projects/p4/</link>
+      <link>http://localhost:1313/projects/p4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/projects/p4/</guid>
+      <guid>http://localhost:1313/projects/p4/</guid>
       <description>Isometric action game based on Tunic</description>
     </item>
     <item>
       <title>Iris</title>
-      <link>https://elias.fish/projects/p3/</link>
+      <link>http://localhost:1313/projects/p3/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/projects/p3/</guid>
+      <guid>http://localhost:1313/projects/p3/</guid>
       <description>2D Platformer</description>
     </item>
     <item>
       <title>Treasures Through Time</title>
-      <link>https://elias.fish/projects/p2/</link>
+      <link>http://localhost:1313/projects/p2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/projects/p2/</guid>
+      <guid>http://localhost:1313/projects/p2/</guid>
       <description>Isometric puzzle mobile game</description>
     </item>
     <item>
       <title>I Am Ambulance</title>
-      <link>https://elias.fish/projects/p1/</link>
+      <link>http://localhost:1313/projects/p1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://elias.fish/projects/p1/</guid>
+      <guid>http://localhost:1313/projects/p1/</guid>
       <description>Endless runner</description>
     </item>
   </channel>
