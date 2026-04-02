@@ -2,11 +2,14 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
+  z-index: 0;
 }
 
 .card-hoverable:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  z-index: 1;
 }
 
 .card-link-wrapper {

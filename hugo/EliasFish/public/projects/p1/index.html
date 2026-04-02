@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta charset="UTF-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -42,7 +42,7 @@
           gtag('config', 'G-X6R90TDX84');
         }
       </script>
-<meta property="og:url" content="https://elias.fish/projects/p1/">
+<meta property="og:url" content="http://localhost:1313/projects/p1/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="I Am Ambulance">
   <meta property="og:description" content="Endless runner">
@@ -252,28 +252,6 @@ I Am Ambulance | Elias Öström
                     
                     
 
-                    <li class="nav-item navbar-text">
-                        
-                        <div class="text-center">
-                            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
-                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
-                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
-                    
 
                 </ul>
 
@@ -343,10 +321,25 @@ I Am Ambulance | Elias Öström
 <h1 id="highlights">Highlights</h1>
 <h3 id="player-movement">Player Movement</h3>
 <p>My main task for the first few weeks was making the player&rsquo;s movement which was closely based on the reference game. I decided to switch the player&rsquo;s jump from being force based into deriving from an animation curve after speaking with the level designers. A curve for jumping along with one for the sideways movement made it easier for them to tweak values in a more direct way over trial and error with forces.</p>
-<p><img src="/images/player-stats-editor.png" alt="Player Curve Editor"></p>
+<div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+  <div style="text-align: center; width: calc(50% - 8px);">
+    ![Player Curve Editor](/images/player-stats-editor.png)
+    <h6>Curve in inspector</h6>
+  </div>
+  <div style="text-align: center; width: calc(50% - 8px);">
+    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/ambulance-movement.mp4" type="video/mp4">
+    </video>
+    <h6>Player movement</h6>
+  </div>
+</div>
 <h3 id="falling-lamp-post">Falling Lamp-post</h3>
 <p>One of the main obstacles in the game are the lightpoles that fall down in front of the player. I made it so the exposed variables in the inspector were rendered in the editor using Unity&rsquo;s gizmos, this made it so level designers could easily see where the falling lamp-posts would start falling instead of just seeing a distance.</p>
-<p><img src="cool/video" alt="Lyktstolpe gizmos"></p>
+<div style="text-align: center;">
+   <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/light-gizmos.mp4" type="video/mp4">
+    </video>
+  </div>
 
           </article>
         </div>
@@ -495,57 +488,57 @@ I Am Ambulance | Elias Öström
           <div class="credits-group">
             <p class="credits-discipline"><strong>Animation:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Anders Nillson</a></p>
+            <p class="mb-0">Anders Nillson</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Theo Hübner Sallis</a></p>
+            <p class="mb-0">Theo Hübner Sallis</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Level Design:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Erik Andersen</a></p>
+            <p class="mb-0"><a href="https://ekadesign.dk/">Erik Andersen</a></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Oliver Riem Vis</a></p>
+            <p class="mb-0">Oliver Riem Vis</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Frans Witting</a></p>
+            <p class="mb-0">Frans Witting</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Graphics:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Isabelle Ehnroth</a></p>
+            <p class="mb-0">Isabelle Ehnroth</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Dante Norling Eklöf</a></p>
+            <p class="mb-0">Dante Norling Eklöf</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Marcus Isaxon</a></p>
+            <p class="mb-0">Marcus Isaxon</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Programming:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Joar Andersson</a></p>
+            <p class="mb-0">Joar Andersson</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Ylver Blum Buer</a></p>
+            <p class="mb-0">Ylver Blum Buer</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">David Grahn</a></p>
+            <p class="mb-0">David Grahn</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Jonathan Rozenberg</a></p>
+            <p class="mb-0">Jonathan Rozenberg</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Camilo Chavez Torres</a></p>
+            <p class="mb-0">Camilo Chavez Torres</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Elias Öström</a></p>
+            <p class="mb-0"><a href="https://elias.fish">Elias Öström</a></p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Music &amp; Sound:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Jonathan Rozenberg</a></p>
+            <p class="mb-0">Jonathan Rozenberg</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Frans Witting</a></p>
+            <p class="mb-0">Frans Witting</p>
             
           </div>
           
@@ -759,14 +752,18 @@ I Am Ambulance | Elias Öström
         <div class="col-md-4 text-center">
             
                 <div class="pb-2">
-                    <a href="https://elias.fish/" title="Elias Öström">
+                    <a href="http://localhost:1313/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
                 </div>
             
             &copy; 2026  All Rights Reserved
-           
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-sm-12 col-md-12 col-lg-9 text-center text-secondary" style="font-size: 0.8rem;">
+                I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
     </div>
@@ -778,25 +775,6 @@ I Am Ambulance | Elias Öström
         document.body.classList.add('dark');
         localStorage.setItem("pref-theme", 'dark');
     }
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            document.documentElement.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-
 </script>
 
 

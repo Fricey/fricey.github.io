@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><meta charset="UTF-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -42,7 +42,7 @@
           gtag('config', 'G-X6R90TDX84');
         }
       </script>
-<meta property="og:url" content="https://elias.fish/test/">
+<meta property="og:url" content="http://localhost:1313/test/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="Tests">
   <meta property="og:description" content="min portfolio">
@@ -248,28 +248,6 @@ Tests | Elias Öström
                     
                     
 
-                    <li class="nav-item navbar-text">
-                        
-                        <div class="text-center">
-                            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
-                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
-                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
-                    
 
                 </ul>
 
@@ -311,14 +289,18 @@ Tests | Elias Öström
         <div class="col-md-4 text-center">
             
                 <div class="pb-2">
-                    <a href="https://elias.fish/" title="Elias Öström">
+                    <a href="http://localhost:1313/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
                 </div>
             
             &copy; 2026  All Rights Reserved
-           
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-sm-12 col-md-12 col-lg-9 text-center text-secondary" style="font-size: 0.8rem;">
+                I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
     </div>
@@ -330,25 +312,6 @@ Tests | Elias Öström
         document.body.classList.add('dark');
         localStorage.setItem("pref-theme", 'dark');
     }
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            document.documentElement.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-
 </script>
 
 

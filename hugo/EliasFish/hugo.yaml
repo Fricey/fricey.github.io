@@ -47,6 +47,7 @@ params:
 
   theme:
     defaultTheme: "dark"
+    disableThemeToggle: true
 
   font:
     fontSize: 1rem
@@ -101,15 +102,6 @@ params:
       enable: false
     socialLinks:
       fontAwesomeIcons: []
-
-  about:
-    enable: false
-    title: "About Me"
-    image: "/images/me.png"
-    content: |-
-      I'm a game developer student based in Sweden. I enjoy building games and interactive experiences, and I'm always looking for new challenges.
-    skills:
-      enable: false
 
   experience:
     enable: false
