@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -42,7 +42,7 @@
           gtag('config', 'G-X6R90TDX84');
         }
       </script>
-<meta property="og:url" content="http://localhost:1313/projects/p6/">
+<meta property="og:url" content="https://elias.fish/projects/p6/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="Catstronaut: Mission Impawssible">
   <meta property="og:description" content="3D Platformer based on Mario 64">
@@ -119,6 +119,7 @@
     }
 </style>
 
+<link rel="stylesheet" href="/css/theme-override.css" media="all">
 
 
 <meta name="description" content="">
@@ -272,7 +273,7 @@ Catstronaut: Mission Impawssible | Elias Öström
                 
                 
                   
-                    <span class="me-2 project-stat">20 Weeks</span>
+                    <span class="me-2 project-stat">14 Weeks</span>
                   
                   <span class="me-2">|</span>
                 
@@ -296,21 +297,22 @@ Catstronaut: Mission Impawssible | Elias Öström
               
                 <span class="badge badge-secondary">3D</span>
               
-                <span class="badge badge-secondary">Tool</span>
-              
                 <span class="badge badge-secondary">Graphics</span>
+              
+                <span class="badge badge-secondary">PhysX</span>
               
             </div>
           </div>
           
           <article class="page-content p-2">
           <h1 id="trailer">Trailer</h1>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/d6Pe73D_B7A?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
-    </div>
-
+<div style="text-align: center;">
+   <video style="width: 100%; aspect-ratio: 16/9;" controls>
+      <source src="/videos/P6-trailer.mp4" type="video/mp4">
+    </video>
+  </div>
 <h1 id="introduction">Introduction</h1>
-<p>Catstronaur: Mission Impawssible is a 3D platformer made as the 6th game project at The Game Assembly. The platforming and movement is based on Mario 64 while some things like the camera are based on Mario Oddyssey for a more modern feel. The goal is to visit different planets to pick up your lost fish oil cargo in hopes of getting employee of the month!</p>
+<p>Catstronaut: Mission Impawssible is a 3D platformer made as the 6th game project at The Game Assembly. The platforming and movement is based on Mario 64 while some things like the camera are based on Mario Odyssey for a more modern feel. The goal is to visit different planets to pick up your lost fish oil cargo in hopes of getting employee of the month!</p>
 <h1 id="key-contributions">Key Contributions</h1>
 <ul>
 <li>PhysX Implementation</li>
@@ -320,10 +322,10 @@ Catstronaut: Mission Impawssible | Elias Öström
 <!-- - VFX implementation -->
 <h1 id="highlights">Highlights</h1>
 <h3 id="physx-implementation">PhysX implementation</h3>
-<p>I decided to take on the task of implementing Nvidia&rsquo;s PhysX API</p>
+<p>One of the big new things this game project was having physics be a requirement and we therefore had to implement Nvidia&rsquo;s PhysX API. My main goal was to make a wrapper for the API that was as simple to use as possible which I accomplished by integrating it into our current component system. I decided to wrap both the <a href="https://nvidia-omniverse.github.io/PhysX/physx/5.6.1/_api_build/classPxShape.html#_CPPv4N7PxShape7PxShapeE11PxBaseFlags">PxShape</a> and <a href="https://nvidia-omniverse.github.io/PhysX/physx/5.6.1/_api_build/classPxActor.html#_CPPv4N7PxActor7PxActorE11PxBaseFlags">PxActor</a> into one component since each object would only have one collider anyway due to us using UBXs. For the character controller I made a seperate component wrapping the <a href="https://nvidia-omniverse.github.io/PhysX/physx/5.6.1/_api_build/classPxCapsuleController.html#_CPPv419PxCapsuleController">PxCapsuleController</a> with both components deriving from a common PhysicsComponent class for shared variables. Most of my time was spent wrapping the collision callback system as I wanted an interface similar to <a href="https://docs.unity3d.com/2022.3/Documentation/ScriptReference/Collider.OnCollisionEnter.html">Unity&rsquo;s</a> as I felt it was a good reference point to go off of.</p>
 <p><img src="/images/physxvd.png" alt="PhysX visual debugger"></p>
 <h3 id="landscape-tessellation">Landscape Tessellation</h3>
-<p>With many of our levels making use of landscape, optimization became a clear issue since due to the landscape being a huge plane it couldn&rsquo;t be frustum culled like other meshes. To avoid rendering millions of vertices all the time me and <a href="https://www.albin.foo">another programmer</a> started looking into tessellation. With a tessellation pipeline we could generate the entire landscape at runtime with a combination of a hull, domain and geometry shader making it possible to skip generating certain parts of the mesh that weren&rsquo;t visible in the scene.</p>
+<p>With many of our levels making use of landscape, optimization became a clear issue since due to the landscape being a huge plane it couldn&rsquo;t be frustum culled like other meshes. To avoid rendering millions of vertices all the time  <a href="https://www.albin.foo">another programmer</a> and I started looking into tessellation. With a tessellation pipeline we could generate the entire landscape at runtime with a combination of a hull, domain and geometry shader making it possible to skip generating certain parts of the mesh that weren&rsquo;t visible in the scene skipping many unnecessary vertices being rendered.</p>
 <div style="text-align: center;">
    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/tessellation.mp4" type="video/mp4">
@@ -768,20 +770,30 @@ Catstronaut: Mission Impawssible | Elias Öström
     
 </div><div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
+        <div class="col-md-8 text-center">
             
                 <div class="pb-2">
-                    <a href="http://localhost:1313/" title="Elias Öström">
+                    <a href="https://elias.fish/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
                 </div>
             
-            &copy; 2026  All Rights Reserved
             </div>
         </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-10 col-12">
+                <div class="mt-1 footer-contact">
+                    <span><a href="mailto:elias.ostrom@hotmail.com">elias.ostrom@hotmail.com</a></span>
+                    <span>&copy; 2026  All Rights Reserved</span>
+                    <span>Malmö, Sweden</span>
+                </div>
+            </div>
+        </div>
+        
         <div class="row justify-content-center mt-3">
-            <div class="col-sm-12 col-md-12 col-lg-9 text-center text-secondary" style="font-size: 0.8rem;">
+            <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
                 I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
@@ -808,6 +820,7 @@ Catstronaut: Mission Impawssible | Elias Öström
 
 <link rel="stylesheet" href="/css/bubbles.css">
 <script src="/js/bubbles.js"></script>
+<script src="/js/scroll.js" defer></script>
 
 
 

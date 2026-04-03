@@ -36,7 +36,7 @@ params:
   customScripts: |
     <link rel="stylesheet" href="/css/bubbles.css">
     <script src="/js/bubbles.js"></script>
-
+    <script src="/js/scroll.js" defer></script>
   title: "Elias Öström"
   description: "min portfolio"
   favicon: "/fav.png"
@@ -93,8 +93,7 @@ params:
     enable: true
     intro: ""
     title: "Elias Öström"
-    subtitle: "hej"
-    content: "jag galet bra på allt"
+    subtitle: "Game Programmer"
     image: /assets/images/ingenting.png
     bottomImage:
       enable: true
@@ -131,6 +130,8 @@ params:
     recentPosts:
       enable: false
     socialNetworks: {}
+    contactLocation: "Malmö, Sweden"
+    contactEmail: "[elias.ostrom@hotmail.com](mailto:elias.ostrom@hotmail.com)"
 
   listPages:
     disableFeaturedImage: false

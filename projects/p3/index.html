@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://elias.fish/projects/p3/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="Iris">
-  <meta property="og:description" content="2D Platformer">
+  <meta property="og:description" content="2D Platformer based on Sheepy: A Short Adventure">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projects">
@@ -53,7 +53,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Iris">
-  <meta name="twitter:description" content="2D Platformer">
+  <meta name="twitter:description" content="2D Platformer based on Sheepy: A Short Adventure">
 
 
 
@@ -119,6 +119,7 @@
     }
 </style>
 
+<link rel="stylesheet" href="/css/theme-override.css" media="all">
 
 
 <meta name="description" content="">
@@ -252,28 +253,6 @@ Iris | Elias Öström
                     
                     
 
-                    <li class="nav-item navbar-text">
-                        
-                        <div class="text-center">
-                            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
-                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
-                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
-                    
 
                 </ul>
 
@@ -294,7 +273,7 @@ Iris | Elias Öström
                 
                 
                   
-                    <span class="me-2 project-stat">4 Weeks</span>
+                    <span class="me-2 project-stat">12 Weeks</span>
                   
                   <span class="me-2">|</span>
                 
@@ -322,8 +301,6 @@ Iris | Elias Öström
               
                 <span class="badge badge-secondary">2D</span>
               
-                <span class="badge badge-secondary">Gameplay</span>
-              
                 <span class="badge badge-secondary">AI</span>
               
                 <span class="badge badge-secondary">Pipeline</span>
@@ -340,7 +317,7 @@ Iris | Elias Öström
     </div>
 
 <h1 id="introduction">Introduction</h1>
-<p>Iris is a 2D platformer developed as the third game project at The Game Assembly. The game is based on Sheepy: A Short Adventure and was made over the course of XX weeks. The engine used is The Game Assembly&rsquo;s in-house engine (TGE) and levels were exported from the Unity engine. You play as a spirit who has been summoned with the sole goal of restoring color to a monochrome world.</p>
+<p>Iris is a 2D platformer developed as the third game project at The Game Assembly. The game is based on Sheepy: A Short Adventure and was made over the course of 12 weeks. The engine used is The Game Assembly&rsquo;s in-house engine (TGE) and levels were exported from the Unity engine. You play as a spirit who has been summoned with the sole goal of restoring color to a monochrome world.</p>
 <h1 id="key-contributions">Key Contributions</h1>
 <ul>
 <li>Scene Import/Export</li>
@@ -350,7 +327,6 @@ Iris | Elias Öström
 <h1 id="highlights">Highlights</h1>
 <h3 id="scene-importexport">Scene Import/Export</h3>
 <p>Export and import of scenes from Unity is what I chose to spend most of the project working on due to a lot of previous experience with the engine. We were provided a Unity exporter by the school but I modified it to fit our purposes and to be able to export things such as colliders, sprites or custom scripts with variables to speed up iteration. I also used the custom scripts with variables to draw gizmos in the editor to visualize things like which levers connected to which elevators as an example. An issue with all these values being exported to the JSON was it made parsing take quite a lot longer but it was fine due to the scenes being small enough.</p>
-<p><img src="cool/video" alt="Video med gizmos"></p>
 <h3 id="enemies">Enemies</h3>
 <p>The two enemies in the game were a patrolling slug-like enemy and a chasing skeleton snake enemy. The patrolling enemy simply moves forward until it either hits a wall or the edge of the platform it&rsquo;s on, while the chasing enemy is a little more complex. It&rsquo;s comprised of multiple segments and &ldquo;swims&rdquo; through the ground moving towards the player and then jumps up in the air to attack. The chasing enemy was also used for the chase sequence of the game where loads of them chase the player at once which uses a behaviour different from the normal enemy to create a more engaging sequence. It was a very fun enemy to develop due to how fluid it ended up looking even with rather simplistic behaviour!</p>
 <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
@@ -522,57 +498,57 @@ Iris | Elias Öström
           <div class="credits-group">
             <p class="credits-discipline"><strong>Animation:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Sharon W. Chao</a></p>
+            <p class="mb-0">Sharon W. Chao</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Tristan Martinez</a></p>
+            <p class="mb-0">Tristan Martinez</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Level Design:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Maja Flink</a></p>
+            <p class="mb-0">Maja Flink</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Nom Köhler</a></p>
+            <p class="mb-0">Nom Köhler</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Graphics:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Emmet Motamed</a></p>
+            <p class="mb-0">Emmet Motamed</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Isabelle Ehnroth</a></p>
+            <p class="mb-0">Isabelle Ehnroth</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Linus Bergström</a></p>
+            <p class="mb-0">Linus Bergström</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Suzanna Kwidzinska</a></p>
+            <p class="mb-0">Suzanna Kwidzinska</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Programming:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">David Olsson</a></p>
+            <p class="mb-0">David Olsson</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Denis Codreanu</a></p>
+            <p class="mb-0"><a href="https://codrea.nu">Denis Codreanu</a></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Elias Öström</a></p>
+            <p class="mb-0"><a href="https://elias.fish">Elias Öström</a></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Isak Raunavaara</a></p>
+            <p class="mb-0">Isak Raunavaara</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Lucas Järlestrand</a></p>
+            <p class="mb-0">Lucas Järlestrand</p>
             
           </div>
           
           <div class="credits-group">
             <p class="credits-discipline"><strong>Sound:</strong></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Denis Codreanu</a></p>
+            <p class="mb-0"><a href="https://codrea.nu/">Denis Codreanu</a></p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Emmet Motamed</a></p>
+            <p class="mb-0">Emmet Motamed</p>
             
-            <p class="mb-0"><a href="https://www.albin.foo">Suzanna Kwidzinska</a></p>
+            <p class="mb-0">Suzanna Kwidzinska</p>
             
           </div>
           
@@ -783,7 +759,7 @@ Iris | Elias Öström
     
 </div><div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
+        <div class="col-md-8 text-center">
             
                 <div class="pb-2">
                     <a href="https://elias.fish/" title="Elias Öström">
@@ -792,8 +768,22 @@ Iris | Elias Öström
                     </a>
                 </div>
             
-            &copy; 2026  All Rights Reserved
-           
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-10 col-12">
+                <div class="mt-1 footer-contact">
+                    <span><a href="mailto:elias.ostrom@hotmail.com">elias.ostrom@hotmail.com</a></span>
+                    <span>&copy; 2026  All Rights Reserved</span>
+                    <span>Malmö, Sweden</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
+                I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
     </div>
@@ -805,25 +795,6 @@ Iris | Elias Öström
         document.body.classList.add('dark');
         localStorage.setItem("pref-theme", 'dark');
     }
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            document.documentElement.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-
 </script>
 
 
@@ -838,6 +809,7 @@ Iris | Elias Öström
 
 <link rel="stylesheet" href="/css/bubbles.css">
 <script src="/js/bubbles.js"></script>
+<script src="/js/scroll.js" defer></script>
 
 
 

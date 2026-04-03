@@ -42,7 +42,7 @@ I knew before even starting that performance would be a big issue since for ever
 ###### (Brickmap cells colored and size exaggerated for demonstration)
 
 # SDF Operations
-One of the things that really interested me with SDF is the flexibility you can do with SDF operations due to SDF being purely mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn't really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.
+One of the things that really interested me with SDF is the flexibility you get with SDF operations due to SDF being purely mathematical functions. SDF operations work as sort of filters to the calculations and can be used to create unique effects that wouldn't really be viable when using traditional rendering methods due to the performance cost of rebuilding meshes. The three operations I decided to implement were unions, subtractions and intersections.
 
 #### Union
 A union is defined by the minimum distance of two shapes resulting in them combining into one. This is the most common operation as the entire scene could be viewed as one big union.

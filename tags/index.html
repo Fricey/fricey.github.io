@@ -118,6 +118,7 @@
     }
 </style>
 
+<link rel="stylesheet" href="/css/theme-override.css" media="all">
 
 
 <meta name="description" content="Tags of Elias Öström">
@@ -248,28 +249,6 @@ Tags | Elias Öström
                     
                     
 
-                    <li class="nav-item navbar-text">
-                        
-                        <div class="text-center">
-                            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
-                                <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                                </svg>
-                                <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="5"></circle>
-                                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                                </svg>
-                            </button>
-                        </div>
-                    </li>
-                    
 
                 </ul>
 
@@ -308,7 +287,7 @@ Tags | Elias Öström
     
 </div><div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
+        <div class="col-md-8 text-center">
             
                 <div class="pb-2">
                     <a href="https://elias.fish/" title="Elias Öström">
@@ -317,8 +296,22 @@ Tags | Elias Öström
                     </a>
                 </div>
             
-            &copy; 2026  All Rights Reserved
-           
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-10 col-12">
+                <div class="mt-1 footer-contact">
+                    <span><a href="mailto:elias.ostrom@hotmail.com">elias.ostrom@hotmail.com</a></span>
+                    <span>&copy; 2026  All Rights Reserved</span>
+                    <span>Malmö, Sweden</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center mt-3">
+            <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
+                I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
     </div>
@@ -330,25 +323,6 @@ Tags | Elias Öström
         document.body.classList.add('dark');
         localStorage.setItem("pref-theme", 'dark');
     }
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            document.documentElement.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-
 </script>
 
 
@@ -363,6 +337,7 @@ Tags | Elias Öström
 
 <link rel="stylesheet" href="/css/bubbles.css">
 <script src="/js/bubbles.js"></script>
+<script src="/js/scroll.js" defer></script>
 
 
 

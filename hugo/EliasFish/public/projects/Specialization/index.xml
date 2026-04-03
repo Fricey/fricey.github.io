@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SDF Renderer on Elias Öström</title>
-    <link>http://localhost:1313/projects/specialization/</link>
+    <link>https://elias.fish/projects/specialization/</link>
     <description>Recent content in SDF Renderer on Elias Öström</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:1313/projects/specialization/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://elias.fish/projects/specialization/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

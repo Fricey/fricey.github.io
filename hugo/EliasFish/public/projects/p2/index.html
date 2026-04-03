@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -42,10 +42,10 @@
           gtag('config', 'G-X6R90TDX84');
         }
       </script>
-<meta property="og:url" content="http://localhost:1313/projects/p2/">
+<meta property="og:url" content="https://elias.fish/projects/p2/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="Treasures Through Time">
-  <meta property="og:description" content="Isometric puzzle mobile game">
+  <meta property="og:description" content="Isometric puzzle mobile game based on Lara Croft Go">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projects">
@@ -53,7 +53,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Treasures Through Time">
-  <meta name="twitter:description" content="Isometric puzzle mobile game">
+  <meta name="twitter:description" content="Isometric puzzle mobile game based on Lara Croft Go">
 
 
 
@@ -119,6 +119,7 @@
     }
 </style>
 
+<link rel="stylesheet" href="/css/theme-override.css" media="all">
 
 
 <meta name="description" content="">
@@ -272,7 +273,7 @@ Treasures Through Time | Elias Öström
                 
                 
                   
-                    <span class="me-2 project-stat">20 Weeks</span>
+                    <span class="me-2 project-stat">6 Weeks</span>
                   
                   <span class="me-2">|</span>
                 
@@ -309,22 +310,6 @@ Treasures Through Time | Elias Öström
           
           <article class="page-content p-2">
           <h1 id="trailer">Trailer</h1>
-<p>Education
-The Game Assembly, Malmö (2024 - 2027)
-LBS Kreative Gymnasiet, Göteborg (2021 - 2024)
-Experience
-(2025)
-Groundskeeper (seasonal)
-AME Enterprenad
-Picking up trash &amp; mowing
-Delivery driver (Seasonal)
-Västsvensk Tidningsdistribution AB
-(2024)
-Delivering newspaper
-kitchen assistant (seasonal)
-Ytterbyhemmet
-(2023)
-Preparing ingredients &amp; washing dishes</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
       <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/xQBMTOCTF8c?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
     </div>
@@ -340,16 +325,25 @@ Preparing ingredients &amp; washing dishes</p>
 </ul>
 <h1 id="highlights">Highlights</h1>
 <h3 id="player-movement">Player Movement</h3>
-<p>I made the player movement using a grid system for all the tiles which was a recommendation by the educators as it lends itself to some good optimizations. If I were to remake it today I think I could have taken advantage of more optimization opportunities such as caching tile neighbours or saving occupants in the tile so the player doesn&rsquo;t need to raycast for enemy collisions.</p>
-<p><img src="cool/video" alt="Spelare som går"></p>
+<p>I made the player movement using a grid system for all the tiles which was a recommendation by the educators as it lends itself to some good optimizations. I also made it so all world events are called by the player moving following a series of checks to decide what happens. This structure was made as an optimization by eliminating the need for things like the enemy to check if the player is in front of it every frame and does so only once after the player has moved instead.</p>
+<div style="text-align: center;">
+   <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/time-movement.mp4" type="video/mp4">
+    </video>
+  </div>
 <h3 id="editor-tools">Editor Tools</h3>
 <p>Unity editor tools are something I think is very useful to speed up development for other disciplines while not taking too much time to implement. One such tool I created was for the moving platforms where the editor draws gizmos to visualize how they would move and where they would end up when activated. I also implemented a script where level designers could quickly place ladders in the editor by setting the height and the script would create instances of the ladder segment model to reach the desired height.</p>
-<p><img src="cool/video" alt="Olika tools användning"></p>
+<p><img src="/images/moving-platform-gizmos.png" alt="Various tools usage"></p>
 <h3 id="menus">Menus</h3>
-<p>The game&rsquo;s main menu was something I put care into by making it a circle of 3D models that act as the buttons. The player can spin this circle around to reach the desired buttons and is pretty heavily based on the menu in the reference game. With both the main menu and its sub menus being 3D I think it created a pretty cool look!</p>
+<p>The game&rsquo;s main menu was something I put care into by making it a circle of 3D models that act as the buttons. The player can spin this circle around to reach the desired buttons. With both the main menu and its sub menus being 3D I think it created a pretty cool look!</p>
+<div style="text-align: center;">
+   <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
+      <source src="/videos/ttt-menu.mp4" type="video/mp4">
+    </video>
+  </div>
 <h3 id="height-fog-shader">Height Fog Shader</h3>
-<p>To transition the level into the background art wanted a fog to cover the bottom of the level. I made this effect using Unity&rsquo;s shader graph which I had prior experience with and after some back and forth with the artists a nice effect was achieved if I say so myself!</p>
-<p><img src="cool/video" alt="Bild på fog"></p>
+<p>To transition the level into the background art wanted a fog to cover the bottom of the level. I made this effect using Unity&rsquo;s shader graph, which I had prior experience with, and after some back and forth with the artists a nice effect was achieved if I say so myself!</p>
+<p><img src="/images/fog.png" alt="Height fog effect"></p>
 
           </article>
         </div>
@@ -728,20 +722,30 @@ Preparing ingredients &amp; washing dishes</p>
     
 </div><div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
+        <div class="col-md-8 text-center">
             
                 <div class="pb-2">
-                    <a href="http://localhost:1313/" title="Elias Öström">
+                    <a href="https://elias.fish/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
                 </div>
             
-            &copy; 2026  All Rights Reserved
             </div>
         </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-10 col-12">
+                <div class="mt-1 footer-contact">
+                    <span><a href="mailto:elias.ostrom@hotmail.com">elias.ostrom@hotmail.com</a></span>
+                    <span>&copy; 2026  All Rights Reserved</span>
+                    <span>Malmö, Sweden</span>
+                </div>
+            </div>
+        </div>
+        
         <div class="row justify-content-center mt-3">
-            <div class="col-sm-12 col-md-12 col-lg-9 text-center text-secondary" style="font-size: 0.8rem;">
+            <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
                 I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
@@ -768,6 +772,7 @@ Preparing ingredients &amp; washing dishes</p>
 
 <link rel="stylesheet" href="/css/bubbles.css">
 <script src="/js/bubbles.js"></script>
+<script src="/js/scroll.js" defer></script>
 
 
 

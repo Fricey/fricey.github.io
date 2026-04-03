@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="UTF-8">
+<head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
@@ -42,10 +42,10 @@
           gtag('config', 'G-X6R90TDX84');
         }
       </script>
-<meta property="og:url" content="http://localhost:1313/projects/p1/">
+<meta property="og:url" content="https://elias.fish/projects/p1/">
   <meta property="og:site_name" content="Elias Öström">
   <meta property="og:title" content="I Am Ambulance">
-  <meta property="og:description" content="Endless runner">
+  <meta property="og:description" content="Endless runner based on Subway Surfers">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="projects">
@@ -53,7 +53,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="I Am Ambulance">
-  <meta name="twitter:description" content="Endless runner">
+  <meta name="twitter:description" content="Endless runner based on Subway Surfers">
 
 
 
@@ -119,6 +119,7 @@
     }
 </style>
 
+<link rel="stylesheet" href="/css/theme-override.css" media="all">
 
 
 <meta name="description" content="">
@@ -272,7 +273,7 @@ I Am Ambulance | Elias Öström
                 
                 
                   
-                    <span class="me-2 project-stat">20 Weeks</span>
+                    <span class="me-2 project-stat">6 Weeks</span>
                   
                   <span class="me-2">|</span>
                 
@@ -320,7 +321,7 @@ I Am Ambulance | Elias Öström
 </ul>
 <h1 id="highlights">Highlights</h1>
 <h3 id="player-movement">Player Movement</h3>
-<p>My main task for the first few weeks was making the player&rsquo;s movement which was closely based on the reference game. I decided to switch the player&rsquo;s jump from being force based into deriving from an animation curve after speaking with the level designers. A curve for jumping along with one for the sideways movement made it easier for them to tweak values in a more direct way over trial and error with forces.</p>
+<p>My main task for the first few weeks was making the player&rsquo;s movement which was closely based on the reference game. I decided to switch the player&rsquo;s jump from being force based into deriving from an animation curve after speaking with the level designers. A curve for jumping along with one for the sideways movement made it easier for them to tweak values in a more direct way compared to trial and error with forces.</p>
 <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
   <div style="text-align: center; width: calc(50% - 8px);">
     ![Player Curve Editor](/images/player-stats-editor.png)
@@ -334,7 +335,7 @@ I Am Ambulance | Elias Öström
   </div>
 </div>
 <h3 id="falling-lamp-post">Falling Lamp-post</h3>
-<p>One of the main obstacles in the game are the lightpoles that fall down in front of the player. I made it so the exposed variables in the inspector were rendered in the editor using Unity&rsquo;s gizmos, this made it so level designers could easily see where the falling lamp-posts would start falling instead of just seeing a distance.</p>
+<p>Lamp-posts are a decoration throughout the game but on later levels some start to fall down in front of the player. I made it so the exposed variables in the inspector were rendered in the editor using Unity&rsquo;s gizmos, this made it so level designers could easily see where the falling lamp-posts would start falling instead of just seeing a distance.</p>
 <div style="text-align: center;">
    <video style="width: 100%; aspect-ratio: 16/9;" autoplay muted loop>
       <source src="/videos/light-gizmos.mp4" type="video/mp4">
@@ -488,7 +489,7 @@ I Am Ambulance | Elias Öström
           <div class="credits-group">
             <p class="credits-discipline"><strong>Animation:</strong></p>
             
-            <p class="mb-0">Anders Nillson</p>
+            <p class="mb-0">Anders Nilsson</p>
             
             <p class="mb-0">Theo Hübner Sallis</p>
             
@@ -749,20 +750,30 @@ I Am Ambulance | Elias Öström
     
 </div><div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-4 text-center">
+        <div class="col-md-8 text-center">
             
                 <div class="pb-2">
-                    <a href="http://localhost:1313/" title="Elias Öström">
+                    <a href="https://elias.fish/" title="Elias Öström">
                         <img alt="Footer logo" src="/fav.png"
                             height="40px" width="40px">
                     </a>
                 </div>
             
-            &copy; 2026  All Rights Reserved
             </div>
         </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-9 col-md-10 col-12">
+                <div class="mt-1 footer-contact">
+                    <span><a href="mailto:elias.ostrom@hotmail.com">elias.ostrom@hotmail.com</a></span>
+                    <span>&copy; 2026  All Rights Reserved</span>
+                    <span>Malmö, Sweden</span>
+                </div>
+            </div>
+        </div>
+        
         <div class="row justify-content-center mt-3">
-            <div class="col-sm-12 col-md-12 col-lg-9 text-center text-secondary" style="font-size: 0.8rem;">
+            <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
                 I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
             </div>
         </div>
@@ -789,6 +800,7 @@ I Am Ambulance | Elias Öström
 
 <link rel="stylesheet" href="/css/bubbles.css">
 <script src="/js/bubbles.js"></script>
+<script src="/js/scroll.js" defer></script>
 
 
 

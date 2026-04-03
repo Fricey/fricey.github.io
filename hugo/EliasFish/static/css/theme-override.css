@@ -1,3 +1,28 @@
+/* Smooth sticky header */
+#profileHeader {
+  position: sticky !important;
+  top: 0 !important;
+  background-color: transparent !important;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#profileHeader .navbar {
+  background-color: transparent !important;
+}
+
+/* Suppress theme's own sticky logic */
+#profileHeader.showHeaderOnTop {
+  position: sticky !important;
+}
+
+#profileHeader.header-hidden {
+  transform: translateY(-105%);
+}
+
+html, body {
+  background-color: var(--background-color) !important;
+}
+
 :root {
   --background-color: #bfdbfe;
   --secondary-background-color: #93c5fd;
@@ -15,4 +40,71 @@
   --primary-color-dark: #38bdf8;
   --secondary-color-dark: #1e293b;
 }
- 
+
+footer .footer-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+footer .footer-contact > span {
+    flex: 1;
+}
+
+footer .footer-contact > span:nth-child(1) {
+    text-align: left;
+}
+
+footer .footer-contact > span:nth-child(2) {
+    text-align: center;
+    color: var(--text-secondary-color);
+}
+
+footer .footer-contact > span:nth-child(3) {
+    text-align: right;
+}
+
+@media (max-width: 767px) {
+    footer .footer-contact {
+        flex-direction: column;
+        gap: 0.25rem;
+        text-align: center;
+    }
+}
+
+footer .footer-contact a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--text-color) !important;
+    position: relative;
+}
+
+footer .footer-contact a::before {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 5px 2px;
+    background-repeat: repeat-x;
+    z-index: 0;
+}
+
+footer .footer-contact a::after {
+    content: "";
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    z-index: 1;
+    transition: width 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+footer .footer-contact a:hover::after {
+    width: 100%;
+}
