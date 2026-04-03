@@ -94,6 +94,7 @@ params:
     intro: ""
     title: "Elias Öström"
     subtitle: "Game Programmer"
+    content: "Interested in all areas of game programming with experience in Unity, Unreal and custom C++ engines."
     image: /assets/images/ingenting.png
     bottomImage:
       enable: true

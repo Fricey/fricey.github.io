@@ -1,31 +1,30 @@
 <div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            {{ if or .Site.Params.navbar.brandLogo .Site.Params.favicon }}
-                <div class="pb-2">
-                    <a href="{{ .Site.BaseURL }}" title="{{ .Site.Title }}">
-                        <img alt="Footer logo" src="{{ .Site.Params.navbar.brandLogo | default .Site.Params.favicon }}"
-                            height="40px" width="40px">
-                    </a>
-                </div>
-            {{ end }}
+        <div class="col-lg-9 col-md-10 col-12">
+            <div class="footer-contact py-2">
+                <span>{{ with .Site.Params.footer.contactEmail }}{{ . | markdownify }}{{ end }}</span>
+                <span>
+                    {{ if or .Site.Params.navbar.brandLogo .Site.Params.favicon }}
+                        <a href="{{ .Site.BaseURL }}" title="{{ .Site.Title }}">
+                            <img alt="Footer logo" src="{{ .Site.Params.navbar.brandLogo | default .Site.Params.favicon }}"
+                                height="40px" width="40px">
+                        </a>
+                    {{ end }}
+                </span>
+                <span>{{ with .Site.Params.footer.contactLocation }}{{ . | markdownify }}{{ end }}</span>
             </div>
         </div>
-        {{ if or .Site.Params.footer.contactLocation .Site.Params.footer.contactEmail }}
-        <div class="row justify-content-center">
-            <div class="col-lg-9 col-md-10 col-12">
-                <div class="mt-1 footer-contact">
-                    <span>{{ with .Site.Params.footer.contactEmail }}{{ . | markdownify }}{{ end }}</span>
-                    <span>&copy; {{ now.Format "2006"}} {{ .Site.Params.copyright }} {{ .Site.Params.terms.copyright | default (i18n "copyright") }}</span>
-                    <span>{{ with .Site.Params.footer.contactLocation }}{{ . | markdownify }}{{ end }}</span>
-                </div>
-            </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-md-10 col-12 text-left text-secondary" style="font-size: 0.8rem;">
+            I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
         </div>
-        {{ end }}
-        <div class="row justify-content-center mt-3">
-            <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
-                I am part of The Game Assembly's internship program. As per the agreement between the Games Industry and The Game Assembly, neither student nor company may be in contact with one another regarding internships before April 15th. Any internship offers can be made on April 27th, at the earliest.
-            </div>
+    </div>
+    {{ if or .Site.Params.footer.contactLocation .Site.Params.footer.contactEmail }}
+    {{ end }}
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-md-10 col-12 text-center text-secondary" style="font-size: 0.8rem;">
+            <span>&copy; {{ now.Format "2006"}} {{ .Site.Params.copyright }} {{ .Site.Params.terms.copyright | default (i18n "copyright") }}</span>
         </div>
     </div>
 </div>

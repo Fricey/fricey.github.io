@@ -1,4 +1,18 @@
+#primary-font {
+  font-family: "Lora", serif !important;
+}
+
+#hero {
+  padding-bottom: 1rem !important;
+}
+
+#projects {
+  padding-top: 0rem !important;
+}
+
+
 /* Smooth sticky header */
+
 #profileHeader {
   position: sticky !important;
   top: 0 !important;
@@ -44,8 +58,9 @@ html, body {
 footer .footer-contact {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
+    font-size: 0.8rem;
 }
 
 footer .footer-contact > span {
@@ -107,4 +122,10 @@ footer .footer-contact a::after {
 
 footer .footer-contact a:hover::after {
     width: 100%;
+}
+
+footer .footer-contact span:nth-child(2) a::before,
+footer .footer-contact span:nth-child(2) a::after,
+footer .footer-contact span:nth-child(2) a:hover::after {
+    display: none;
 }
