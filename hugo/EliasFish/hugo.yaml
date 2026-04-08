@@ -38,7 +38,7 @@ params:
     <script src="/js/bubbles.js"></script>
     <script src="/js/scroll.js" defer></script>
   title: "Elias Öström"
-  description: "min portfolio"
+  description: "Game Programmer"
   favicon: "/fav.png"
 
   useBootstrapCDN: false
